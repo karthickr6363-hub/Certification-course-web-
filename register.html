@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - CertiLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .auth-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .auth-card { box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .logo-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex">
+        <!-- Left Side - Branding -->
+        <div class="hidden lg:flex lg:w-1/2 auth-bg text-white p-12 flex-col justify-center items-center">
+            <div class="max-w-md w-full text-center">
+                <a href="index.html" class="flex items-center justify-center space-x-3 mb-10 hover:opacity-80 transition cursor-pointer">
+                    <div class="w-12 h-12 bg-white bg-opacity-20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/30">
+                        <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    </div>
+                    <span class="text-3xl font-bold">CertiLearn</span>
+                </a>
+                <h1 class="text-4xl font-bold mb-4">Start Your Journey</h1>
+                <p class="text-xl text-white/90 mb-10 leading-relaxed">Join thousands of professionals advancing their careers with industry-recognized certifications</p>
+                <div class="space-y-5 flex flex-col items-center">
+                    <div class="flex items-center justify-center gap-3">
+                        <i class="fas fa-check-circle text-xl text-white flex-shrink-0"></i>
+                        <span class="text-lg">Access to 100+ courses</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-3">
+                        <i class="fas fa-check-circle text-xl text-white flex-shrink-0"></i>
+                        <span class="text-lg">Earn professional certifications</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-3">
+                        <i class="fas fa-check-circle text-xl text-white flex-shrink-0"></i>
+                        <span class="text-lg">Learn from industry experts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Register Form -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-8">
+            <div class="w-full max-w-md">
+                <div class="text-center mb-8 lg:hidden">
+                    <a href="index.html" class="flex items-center justify-center space-x-2 mb-4 hover:opacity-80 transition cursor-pointer">
+                        <div class="w-10 h-10 logo-gradient rounded-xl flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-gray-900">CertiLearn</span>
+                    </a>
+                </div>
+                <!-- Centered "Create Account" heading; form fields stay left-aligned for readability -->
+                <div class="auth-card bg-white rounded-2xl p-8 text-center">
+                    <div class="mb-6">
+                        <h2 class="text-3xl font-bold mb-2 text-gray-900">Create Account</h2>
+                        <p class="text-gray-600">Sign up to get started with your learning journey</p>
+                    </div>
+                    
+                    <form class="space-y-5 text-left">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">First Name</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="John">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Last Name</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Doe">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="your.email@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Password</label>
+                            <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Create a password">
+                            <p class="text-sm text-gray-500 mt-1">Must be at least 8 characters</p>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Confirm Password</label>
+                            <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Confirm your password">
+                        </div>
+                        <div>
+                            <label class="flex items-start">
+                                <input type="checkbox" class="mr-2 mt-1">
+                                <span class="text-gray-700 text-sm">I agree to the <a href="terms.html" class="text-purple-600 hover:underline">Terms & Conditions</a> and <a href="privacy.html" class="text-purple-600 hover:underline">Privacy Policy</a></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="w-full bg-purple-600 text-white px-6 py-3.5 rounded-xl hover:bg-purple-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                            Create Account
+                        </button>
+                    </form>
+
+                    <div class="mt-8 pt-8 border-t">
+                        <p class="text-center text-gray-600 mb-4">Or sign up with</p>
+                        <div class="grid grid-cols-3 gap-4">
+                            <button class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                                <i class="fab fa-google text-red-500"></i>
+                            </button>
+                            <button class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                                <i class="fab fa-facebook text-blue-600"></i>
+                            </button>
+                            <button class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                                <i class="fab fa-github"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <p class="text-gray-600">Already have an account? <a href="login.html" class="text-purple-600 font-semibold hover:underline">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+

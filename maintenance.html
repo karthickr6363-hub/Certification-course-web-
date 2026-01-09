@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Mode - CertiLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .maintenance-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        .gear { animation: spin 20s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen maintenance-bg flex items-center justify-center p-8">
+        <div class="text-center text-white max-w-2xl mx-auto">
+            <div class="mb-8">
+                <div class="w-48 h-48 mx-auto relative mb-8">
+                    <i class="fas fa-cog gear text-8xl text-purple-400 absolute inset-0"></i>
+                    <i class="fas fa-cog gear text-6xl text-blue-400 absolute inset-0" style="animation-direction: reverse; animation-duration: 15s;"></i>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-4">We'll Be Back Soon!</h1>
+                <p class="text-xl text-gray-300 mb-2">We're currently performing scheduled maintenance</p>
+                <p class="text-lg text-gray-400">We'll be back up and running in no time. Thank you for your patience!</p>
+            </div>
+
+            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 mb-8">
+                <div class="flex items-center justify-center space-x-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2">2</div>
+                        <div class="text-gray-300">Hours</div>
+                    </div>
+                    <div class="text-4xl">:</div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2">30</div>
+                        <div class="text-gray-300">Minutes</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <p class="text-gray-300">For urgent matters, please contact us at:</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="mailto:support@certilearn.com" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition font-semibold inline-flex items-center justify-center">
+                        <i class="fas fa-envelope mr-2"></i>support@certilearn.com
+                    </a>
+                    <a href="tel:+15551234567" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold inline-flex items-center justify-center">
+                        <i class="fas fa-phone mr-2"></i>+1 (555) 123-4567
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <a href="index.html" class="text-gray-400 hover:text-white transition">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Homepage
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

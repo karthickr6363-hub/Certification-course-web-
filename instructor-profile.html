@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Smith - Instructor Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .stats-card { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .course-card { border-top: 4px solid #667eea; transition: all 0.3s ease; }
+        .course-card:hover { transform: translateX(5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">CertiLearn</span>
+                </a>
+                <div id="mobile-home-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                    <a href="index.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Home 1</a>
+                    <a href="index-v2.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Home 2</a>
+
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-600 font-medium">Home</a>
+                    <a href="courses.html" class="text-gray-700 hover:text-purple-600 font-medium">Courses</a>
+                    <a href="instructors.html" class="text-gray-700 hover:text-purple-600 font-medium">Instructors</a>
+                    <a href="certification-exam.html" class="text-gray-700 hover:text-purple-600 font-medium">Certifications</a>
+                    <a href="pricing.html" class="text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-purple-600 font-medium">Blog</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                    <a href="login.html" class="border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium">Login</a>
+                    <a href="register.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <section class="profile-header py-12 text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div class="w-48 h-48 bg-white bg-opacity-20 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-6xl font-bold">JS</span>
+                </div>
+                <div class="flex-1 text-center md:text-left">
+                    <h1 class="text-4xl font-bold mb-2">John Smith</h1>
+                    <p class="text-xl text-purple-100 mb-4">AWS Solutions Architect • Cloud Computing Expert</p>
+                    <p class="text-purple-100 mb-6 max-w-2xl">
+                        With over 10 years of experience in cloud computing and architecture, John has helped hundreds of companies migrate to AWS and optimize their cloud infrastructure. He holds multiple AWS certifications and is passionate about teaching cloud architecture to the next generation of engineers.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                        <button class="bg-white text-purple-600 px-6 py-2 rounded-lg hover:bg-purple-50 transition font-semibold">
+                            <i class="fas fa-envelope mr-2"></i>Contact
+                        </button>
+                        <button class="bg-white bg-opacity-20 backdrop-blur-sm text-white px-6 py-2 rounded-lg hover:bg-opacity-30 transition font-semibold">
+                            <i class="fas fa-user-plus mr-2"></i>Follow
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-8 -mt-8 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="stats-card rounded-xl p-6 text-white text-center">
+                    <div class="text-3xl font-bold mb-2">12</div>
+                    <div class="text-sm">Courses</div>
+                </div>
+                <div class="stats-card rounded-xl p-6 text-white text-center">
+                    <div class="text-3xl font-bold mb-2">15K+</div>
+                    <div class="text-sm">Students</div>
+                </div>
+                <div class="stats-card rounded-xl p-6 text-white text-center">
+                    <div class="text-3xl font-bold mb-2">4.9</div>
+                    <div class="text-sm">Rating</div>
+                </div>
+                <div class="stats-card rounded-xl p-6 text-white text-center">
+                    <div class="text-3xl font-bold mb-2">10+</div>
+                    <div class="text-sm">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar -->
+                <aside class="w-full lg:w-64 flex-shrink-0">
+                    <div class="bg-white rounded-xl p-6 shadow-md sticky top-24">
+                        <h3 class="text-lg font-bold mb-4 text-gray-800">About</h3>
+                        <div class="space-y-4 text-sm text-gray-700">
+                            <div>
+                                <strong>Location:</strong><br>
+                                San Francisco, CA
+                            </div>
+                            <div>
+                                <strong>Expertise:</strong><br>
+                                AWS, Cloud Architecture, DevOps
+                            </div>
+                            <div>
+                                <strong>Certifications:</strong><br>
+                                AWS Solutions Architect Professional<br>
+                                AWS DevOps Engineer<br>
+                                AWS Security Specialty
+                            </div>
+                            <div>
+                                <strong>Education:</strong><br>
+                                M.S. Computer Science, Stanford University
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t">
+                            <h4 class="font-bold mb-3 text-gray-800">Social</h4>
+                            <div class="flex space-x-3">
+                                <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="flex-1">
+                    <!-- Bio -->
+                    <div class="bg-white rounded-xl p-8 shadow-md mb-8">
+                        <h2 class="text-2xl font-bold mb-4 text-gray-800">Biography</h2>
+                        <div class="text-gray-700 space-y-4 leading-relaxed">
+                            <p>
+                                John Smith is a seasoned AWS Solutions Architect with over a decade of experience in cloud computing and infrastructure design. He has worked with Fortune 500 companies to design and implement scalable, secure, and cost-effective cloud solutions on AWS.
+                            </p>
+                            <p>
+                                John's expertise spans across various AWS services including EC2, S3, Lambda, CloudFormation, and many more. He is passionate about sharing his knowledge and has helped thousands of students achieve their AWS certifications and advance their careers in cloud computing.
+                            </p>
+                            <p>
+                                Prior to becoming an instructor, John worked as a Senior Solutions Architect at Amazon Web Services, where he helped enterprise clients migrate to the cloud. He holds multiple AWS certifications and is a regular speaker at cloud computing conferences worldwide.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Courses -->
+                    <div class="bg-white rounded-xl p-8 shadow-md mb-8">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">Courses Taught</h2>
+                        <div class="space-y-4">
+                            <div class="course-card bg-gray-50 rounded-lg p-6">
+                                <div class="flex flex-col md:flex-row gap-6">
+                                    <div class="w-full md:w-48 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex-shrink-0"></div>
+                                    <div class="flex-1">
+                                        <h3 class="text-xl font-bold mb-2 text-gray-800">AWS Certified Solutions Architect</h3>
+                                        <p class="text-gray-600 mb-3">Master cloud architecture and design scalable solutions</p>
+                                        <div class="flex flex-wrap items-center gap-4 mb-3">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                                <span class="text-gray-700 font-semibold">4.8</span>
+                                                <span class="text-gray-500 ml-1">(2,450)</span>
+                                            </div>
+                                            <span class="text-gray-500"><i class="far fa-clock mr-1"></i>12 hours</span>
+                                            <span class="text-gray-500"><i class="far fa-user mr-1"></i>2,450 students</span>
+                                        </div>
+                                        <a href="course-details.html" class="text-purple-600 font-semibold hover:underline">View Course →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-card bg-gray-50 rounded-lg p-6">
+                                <div class="flex flex-col md:flex-row gap-6">
+                                    <div class="w-full md:w-48 h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex-shrink-0"></div>
+                                    <div class="flex-1">
+                                        <h3 class="text-xl font-bold mb-2 text-gray-800">AWS DevOps Engineering</h3>
+                                        <p class="text-gray-600 mb-3">Learn DevOps practices on AWS platform</p>
+                                        <div class="flex flex-wrap items-center gap-4 mb-3">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                                <span class="text-gray-700 font-semibold">4.9</span>
+                                                <span class="text-gray-500 ml-1">(1,890)</span>
+                                            </div>
+                                            <span class="text-gray-500"><i class="far fa-clock mr-1"></i>15 hours</span>
+                                            <span class="text-gray-500"><i class="far fa-user mr-1"></i>1,890 students</span>
+                                        </div>
+                                        <a href="course-details.html" class="text-purple-600 font-semibold hover:underline">View Course →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-card bg-gray-50 rounded-lg p-6">
+                                <div class="flex flex-col md:flex-row gap-6">
+                                    <div class="w-full md:w-48 h-32 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex-shrink-0"></div>
+                                    <div class="flex-1">
+                                        <h3 class="text-xl font-bold mb-2 text-gray-800">AWS Security Best Practices</h3>
+                                        <p class="text-gray-600 mb-3">Secure your AWS infrastructure</p>
+                                        <div class="flex flex-wrap items-center gap-4 mb-3">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                                <span class="text-gray-700 font-semibold">4.7</span>
+                                                <span class="text-gray-500 ml-1">(1,230)</span>
+                                            </div>
+                                            <span class="text-gray-500"><i class="far fa-clock mr-1"></i>10 hours</span>
+                                            <span class="text-gray-500"><i class="far fa-user mr-1"></i>1,230 students</span>
+                                        </div>
+                                        <a href="course-details.html" class="text-purple-600 font-semibold hover:underline">View Course →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews -->
+                    <div class="bg-white rounded-xl p-8 shadow-md">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">Student Reviews</h2>
+                        <div class="space-y-6">
+                            <div class="border-l-4 border-purple-600 pl-6">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Alex Thompson</h4>
+                                        <div class="flex items-center">
+                                            <div class="flex text-yellow-400 mr-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-500">2 weeks ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700">John is an excellent instructor! His AWS course is comprehensive and practical. I passed my exam on the first try thanks to his clear explanations and hands-on labs.</p>
+                            </div>
+                            <div class="border-l-4 border-purple-600 pl-6">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Sarah Johnson</h4>
+                                        <div class="flex items-center">
+                                            <div class="flex text-yellow-400 mr-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-500">1 month ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700">Highly recommend John's courses! He has deep knowledge and explains complex concepts in an easy-to-understand way. The real-world examples are particularly valuable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">CertiLearn</span>
+                    </div>
+                    <p class="text-sm">Your trusted partner for professional certifications and career advancement.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="courses.html" class="hover:text-white transition">Courses</a></li>
+                        <li><a href="instructors.html" class="hover:text-white transition">Instructors</a></li>
+                        <li><a href="certification-exam.html" class="hover:text-white transition">Certifications</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 CertiLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+

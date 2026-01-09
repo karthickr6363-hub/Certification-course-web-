@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification Exams - CertiLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        body { overflow-x: hidden; }
+        .exam-hero { background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%); }
+        .exam-category { background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%); border: 2px solid #e5e7eb; transition: all 0.3s ease; }
+        .exam-category:hover { border-color: #667eea; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2); transform: translateY(-5px); }
+        .certificate-preview { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; overflow: hidden; }
+        .process-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 200px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 8px; margin-top: 8px; z-index: 1000; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 12px 20px; color: #374151; transition: all 0.2s; }
+        .dropdown-menu a:hover { background: #f3f4f6; color: #667eea; }
+        .dropdown-menu a:first-child { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .dropdown-menu a:last-child { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">CertiLearn</span>
+                </a>
+                <!-- Desktop menu (lg and up) -->
+                <div class="hidden xl:flex items-center space-x-8 tabmenubar">
+                    <div class="dropdown relative">
+                        <a href="index.html" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Home <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="index-v2.html">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="courses.html" class="text-gray-700 hover:text-purple-600 font-medium">Courses</a>
+                    <a href="instructors.html" class="text-gray-700 hover:text-purple-600 font-medium">Instructors</a>
+                    <a href="certification-exam.html" class="text-gray-700 hover:text-purple-600 font-medium">Certifications</a>
+                    <a href="pricing.html" class="text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-purple-600 font-medium">Blog</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Account <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Auth buttons (desktop) + mobile toggle -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden xl:flex items-center space-x-4">
+                        <a href="login.html" class="border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium">Login</a>
+                        <a href="register.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold">Sign Up</a>
+                    </div>
+                    <button class="xl:hidden text-gray-700 focus:outline-none hover:text-purple-600 transition mobilemenubar" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile / tablet menu -->
+            <div id="mobile-menu" class="xl:hidden hidden mt-4 space-y-2 mobilemenubar bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-lg">
+                <div>
+                    <button onclick="toggleMobileDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium">
+                        <span>Home</span>
+                        <i class="fas fa-chevron-down text-xs" id="mobile-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-home-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="index.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Home 1</a>
+                        <a href="index-v2.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Home 2</a>
+                    </div>
+                </div>
+                <a href="courses.html" class="block text-gray-700 hover:text-purple-600 font-medium">Courses</a>
+                <a href="instructors.html" class="block text-gray-700 hover:text-purple-600 font-medium">Instructors</a>
+                <a href="certification-exam.html" class="block text-gray-700 hover:text-purple-600 font-medium">Certifications</a>
+                <a href="pricing.html" class="block text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-purple-600 font-medium">Blog</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                <div>
+                    <button onclick="toggleAccountDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium">
+                        <span>Account</span>
+                        <i class="fas fa-chevron-down text-xs" id="mobile-account-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-account-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="user-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">User Dashboard</a>
+                        <a href="admin-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Admin Dashboard</a>
+                    </div>
+                </div>
+                <a href="login.html" class="block border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium text-center">Login</a>
+                <a href="register.html" class="block bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold text-center">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="exam-hero py-20 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">Get Certified Today</h1>
+                <p class="text-xl mb-8 text-blue-100">Earn industry-recognized certifications and advance your career with our comprehensive exam preparation programs</p>
+                <button class="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-50 transition font-bold text-lg shadow-lg">
+                    Browse Certification Tracks
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exam Categories -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Certification Exam Categories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <div class="exam-category rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-cloud text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Cloud Computing</h3>
+                    <p class="text-gray-600 mb-6">AWS, Azure, GCP cloud computing certifications</p>
+                    <ul class="space-y-2 mb-6 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>AWS Solutions Architect</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Azure Administrator</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Google Cloud Professional</li>
+                    </ul>
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold">View Exams</button>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="exam-category rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-shield-alt text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Cybersecurity</h3>
+                    <p class="text-gray-600 mb-6">Security certifications and ethical hacking like CEH, CISSP, Security+</p>
+                    <ul class="space-y-2 mb-6 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Certified Ethical Hacker (CEH)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>CISSP</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Security+</li>
+                    </ul>
+                    <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition font-semibold">View Exams</button>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="exam-category rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-code text-purple-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Programming</h3>
+                    <p class="text-gray-600 mb-6">Software development certifications like java, python..</p>
+                    <ul class="space-y-2 mb-6 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Java Certification</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Python Professional</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>JavaScript Expert</li>
+                    </ul>
+                    <button class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition font-semibold">View Exams</button>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="exam-category rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-chart-bar text-yellow-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Data Science</h3>
+                    <p class="text-gray-600 mb-6">Data analysis and machine learning Machine Learning Engineer..</p>
+                    <ul class="space-y-2 mb-6 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Data Science Professional</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Machine Learning Engineer</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Big Data Specialist</li>
+                    </ul>
+                    <button class="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 transition font-semibold">View Exams</button>
+                </div>
+
+                <!-- Category 5 -->
+                <div class="exam-category rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-briefcase text-red-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Business</h3>
+                    <p class="text-gray-600 mb-6">Project management business certifications</p>
+                    <ul class="space-y-2 mb-6 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>PMP Certification</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Six Sigma</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Business Analyst</li>
+                    </ul>
+                    <button class="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition font-semibold">View Exams</button>
+                </div>
+
+                <!-- Category 6 -->
+                <div class="exam-category rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-paint-brush text-pink-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Design</h3>
+                    <p class="text-gray-600 mb-6">Creative and UI/UX design certifications</p>
+                    <ul class="space-y-2 mb-6 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Adobe Certified Expert</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>UI/UX Professional</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Graphic Design Specialist</li>
+                    </ul>
+                    <button class="w-full bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition font-semibold">View Exams</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mock Test Registration -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-12 text-center">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800">Practice Makes Perfect</h2>
+                <p class="text-xl text-gray-600 mb-8">Take our mock tests to prepare for your certification exam</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">500+</div>
+                        <div class="text-gray-700">Practice Questions</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <div class="text-3xl font-bold text-purple-600 mb-2">50+</div>
+                        <div class="text-gray-700">Mock Exams</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <div class="text-3xl font-bold text-pink-600 mb-2">95%</div>
+                        <div class="text-gray-700">Pass Rate</div>
+                    </div>
+                </div>
+                <button class="bg-purple-600 text-white px-8 py-4 rounded-lg hover:bg-purple-700 transition font-bold text-lg">
+                    Register for Mock Test
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements & Validity -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Exam Requirements</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-1">Prerequisites</h3>
+                                <p class="text-gray-600">Complete the recommended course and achieve passing scores on practice exams</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-1">Registration</h3>
+                                <p class="text-gray-600">Register at least 48 hours before your preferred exam date</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-1">Identification</h3>
+                                <p class="text-gray-600">Bring a valid government-issued photo ID to the exam center</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Certificate Validity</h2>
+                    <div class="bg-white rounded-xl p-8 shadow-md">
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">Certification Duration</h3>
+                                <p class="text-gray-600">Most certifications are valid for 3 years from the date of issue</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">Renewal Process</h3>
+                                <p class="text-gray-600">Complete continuing education credits or retake the exam to renew</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">Digital Badge</h3>
+                                <p class="text-gray-600">Receive a digital badge that can be shared on LinkedIn and other professional platforms</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Sample -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-full overflow-x-hidden">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Certificate Sample</h2>
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="certificate-preview rounded-2xl p-4 md:p-8 lg:p-12 text-center relative w-full overflow-hidden">
+                    <div class="absolute top-2 left-2 right-2 bottom-2 md:top-4 md:left-4 md:right-4 md:bottom-4 border-4 border-amber-600 rounded-lg"></div>
+                    <div class="relative z-10 px-2 md:px-4">
+                        <div class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-amber-900 mb-4 break-words">CERTIFICATE OF COMPLETION</div>
+                        <div class="text-base sm:text-lg md:text-xl lg:text-2xl text-amber-800 mb-6 md:mb-8">This is to certify that</div>
+                        <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-amber-900 mb-6 md:mb-8 border-b-4 border-amber-800 inline-block px-4 md:px-8 pb-2 md:pb-4 break-words">John Doe</div>
+                        <div class="text-sm sm:text-base md:text-lg lg:text-xl text-amber-800 mb-4 md:mb-6">has successfully completed the</div>
+                        <div class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-amber-900 mb-6 md:mb-8 break-words px-2">AWS Certified Solutions Architect</div>
+                        <div class="text-sm sm:text-base md:text-lg text-amber-800 mb-6 md:mb-8">Program on March 15, 2024</div>
+                        <div class="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-6 sm:gap-4 mt-8 sm:mt-12 md:mt-16">
+                            <div class="text-center w-full sm:w-auto">
+                                <div class="border-t-2 border-amber-800 pt-2 w-32 sm:w-40 md:w-48 mx-auto">
+                                    <div class="font-bold text-amber-900 text-sm sm:text-base">John Smith</div>
+                                    <div class="text-xs sm:text-sm text-amber-800">Instructor</div>
+                                </div>
+                            </div>
+                            <div class="text-center w-full sm:w-auto">
+                                <div class="border-t-2 border-amber-800 pt-2 w-32 sm:w-40 md:w-48 mx-auto">
+                                    <div class="font-bold text-amber-900 text-sm sm:text-base">CertiLearn</div>
+                                    <div class="text-xs sm:text-sm text-amber-800">Certification Authority</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">How Certification Works</h2>
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 items-start text-center">
+                <div>
+                    <div class="process-icon rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-book text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">1. Learn</h3>
+                    <p class="text-gray-600 max-w-xs mx-auto">Complete comprehensive course materials</p>
+                </div>
+                <div>
+                    <div class="process-icon rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clipboard-check text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">2. Practice</h3>
+                    <p class="text-gray-600 max-w-xs mx-auto">Take mock exams and practice tests</p>
+                </div>
+                <div>
+                    <div class="process-icon rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-file-alt text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">3. Appear for Exam</h3>
+                    <p class="text-gray-600 max-w-xs mx-auto">Schedule and take the certification exam</p>
+                </div>
+                <div>
+                    <div class="process-icon rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-certificate text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">4. Get Certified</h3>
+                    <p class="text-gray-600 max-w-xs mx-auto">Receive your industry-recognized certificate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">CertiLearn</span>
+                    </div>
+                    <p class="text-sm">Your trusted partner for professional certifications and career advancement.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="courses.html" class="hover:text-white transition">Courses</a></li>
+                        <li><a href="instructors.html" class="hover:text-white transition">Instructors</a></li>
+                        <li><a href="certification-exam.html" class="hover:text-white transition">Certifications</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 CertiLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        function toggleMobileDropdown() {
+            const dropdown = document.getElementById('mobile-home-dropdown');
+            const icon = document.getElementById('mobile-dropdown-icon');
+            dropdown.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+        // Mobile account dropdown toggle
+        function toggleAccountDropdown() {
+            const dropdown = document.getElementById('mobile-account-dropdown');
+            const icon = document.getElementById('mobile-account-dropdown-icon');
+            dropdown.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+

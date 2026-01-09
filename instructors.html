@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructors - CertiLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .instructor-card { background: white; border-radius: 16px; transition: all 0.3s ease; }
+        .instructor-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .instructor-avatar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .filter-btn { transition: all 0.3s ease; }
+        .filter-btn.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 200px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 8px; margin-top: 8px; z-index: 1000; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 12px 20px; color: #374151; transition: all 0.2s; }
+        .dropdown-menu a:hover { background: #f3f4f6; color: #667eea; }
+        .dropdown-menu a:first-child { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .dropdown-menu a:last-child { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">CertiLearn</span>
+                </a>
+                <!-- Desktop menu (lg and up) -->
+                <div class="hidden xl:flex items-center space-x-8 tabmenubar">
+                    <div class="dropdown relative">
+                        <a href="index.html" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Home <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="index-v2.html">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="courses.html" class="text-gray-700 hover:text-purple-600 font-medium">Courses</a>
+                    <a href="instructors.html" class="text-gray-700 hover:text-purple-600 font-medium">Instructors</a>
+                    <a href="certification-exam.html" class="text-gray-700 hover:text-purple-600 font-medium">Certifications</a>
+                    <a href="pricing.html" class="text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-purple-600 font-medium">Blog</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Account <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Auth buttons (desktop) + mobile toggle -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden xl:flex items-center space-x-4">
+                        <a href="login.html" class="border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium">Login</a>
+                        <a href="register.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold">Sign Up</a>
+                    </div>
+                    <button class="xl:hidden text-gray-700 focus:outline-none hover:text-purple-600 transition mobilemenubar" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile / tablet menu -->
+            <div id="mobile-menu" class="xl:hidden hidden mt-4 space-y-2 mobilemenubar bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-lg">
+                <div>
+                    <button onclick="toggleMobileDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium">
+                        <span>Home</span>
+                        <i class="fas fa-chevron-down text-xs" id="mobile-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-home-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="index.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Home 1</a>
+                        <a href="index-v2.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Home 2</a>
+                    </div>
+                </div>
+                <a href="courses.html" class="block text-gray-700 hover:text-purple-600 font-medium">Courses</a>
+                <a href="instructors.html" class="block text-gray-700 hover:text-purple-600 font-medium">Instructors</a>
+                <a href="certification-exam.html" class="block text-gray-700 hover:text-purple-600 font-medium">Certifications</a>
+                <a href="pricing.html" class="block text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-purple-600 font-medium">Blog</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                <div>
+                    <button onclick="toggleAccountDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium">
+                        <span>Account</span>
+                        <i class="fas fa-chevron-down text-xs" id="mobile-account-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-account-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="user-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">User Dashboard</a>
+                        <a href="admin-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Admin Dashboard</a>
+                    </div>
+                </div>
+                <a href="login.html" class="block border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium text-center">Login</a>
+                <a href="register.html" class="block bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold text-center">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 py-16 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-4">Meet Our Expert Instructors</h1>
+            <p class="text-xl text-purple-100 max-w-2xl mx-auto">Learn from industry professionals with years of real-world experience and proven track records</p>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="py-6 bg-white border-b">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <span class="font-semibold text-gray-700">Filter by Expertise:</span>
+                <button class="filter-btn active px-4 py-2 rounded-full border border-gray-300">All</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">Cloud Computing</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">Cybersecurity</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">Data Science</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">Programming</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">Business</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructors Grid -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Instructor 1 -->
+                <div class="instructor-card shadow-lg p-6 text-center">
+                    <div class="instructor-avatar w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-3xl font-bold">JS</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 text-gray-800">John Smith</h3>
+                    <p class="text-gray-600 text-sm mb-3">AWS Solutions Architect</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700 font-semibold">4.9</span>
+                        <span class="text-gray-500 ml-1 text-sm">(2,450)</span>
+                    </div>
+                    <div class="flex items-center justify-center mb-4 text-sm text-gray-600">
+                        <i class="fas fa-book mr-1"></i>
+                        <span>12 Courses</span>
+                        <i class="fas fa-users ml-4 mr-1"></i>
+                        <span>15K+ Students</span>
+                    </div>
+                    <a href="instructor-profile.html" class="block w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-semibold">View Profile</a>
+                </div>
+
+                <!-- Instructor 2 -->
+                <div class="instructor-card shadow-lg p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-3xl font-bold">MJ</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 text-gray-800">Maria Johnson</h3>
+                    <p class="text-gray-600 text-sm mb-3">Cybersecurity Expert</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700 font-semibold">4.8</span>
+                        <span class="text-gray-500 ml-1 text-sm">(1,890)</span>
+                    </div>
+                    <div class="flex items-center justify-center mb-4 text-sm text-gray-600">
+                        <i class="fas fa-book mr-1"></i>
+                        <span>8 Courses</span>
+                        <i class="fas fa-users ml-4 mr-1"></i>
+                        <span>12K+ Students</span>
+                    </div>
+                    <a href="instructor-profile.html" class="block w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-semibold">View Profile</a>
+                </div>
+
+                <!-- Instructor 3 -->
+                <div class="instructor-card shadow-lg p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-3xl font-bold">DW</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 text-gray-800">David Williams</h3>
+                    <p class="text-gray-600 text-sm mb-3">Data Science Specialist</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700 font-semibold">4.9</span>
+                        <span class="text-gray-500 ml-1 text-sm">(3,120)</span>
+                    </div>
+                    <div class="flex items-center justify-center mb-4 text-sm text-gray-600">
+                        <i class="fas fa-book mr-1"></i>
+                        <span>15 Courses</span>
+                        <i class="fas fa-users ml-4 mr-1"></i>
+                        <span>18K+ Students</span>
+                    </div>
+                    <a href="instructor-profile.html" class="block w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-semibold">View Profile</a>
+                </div>
+
+                <!-- Instructor 4 -->
+                <div class="instructor-card shadow-lg p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-3xl font-bold">SB</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 text-gray-800">Sarah Brown</h3>
+                    <p class="text-gray-600 text-sm mb-3">Full Stack Developer</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700 font-semibold">4.7</span>
+                        <span class="text-gray-500 ml-1 text-sm">(2,100)</span>
+                    </div>
+                    <div class="flex items-center justify-center mb-4 text-sm text-gray-600">
+                        <i class="fas fa-book mr-1"></i>
+                        <span>10 Courses</span>
+                        <i class="fas fa-users ml-4 mr-1"></i>
+                        <span>14K+ Students</span>
+                    </div>
+                    <a href="instructor-profile.html" class="block w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-semibold">View Profile</a>
+                </div>
+
+                <!-- Instructor 5 -->
+                <div class="instructor-card shadow-lg p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-3xl font-bold">RK</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 text-gray-800">Robert Kim</h3>
+                    <p class="text-gray-600 text-sm mb-3">DevOps Engineer</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700 font-semibold">4.8</span>
+                        <span class="text-gray-500 ml-1 text-sm">(1,650)</span>
+                    </div>
+                    <div class="flex items-center justify-center mb-4 text-sm text-gray-600">
+                        <i class="fas fa-book mr-1"></i>
+                        <span>9 Courses</span>
+                        <i class="fas fa-users ml-4 mr-1"></i>
+                        <span>11K+ Students</span>
+                    </div>
+                    <a href="instructor-profile.html" class="block w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-semibold">View Profile</a>
+                </div>
+
+                <!-- Instructor 6 -->
+                <div class="instructor-card shadow-lg p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-3xl font-bold">EC</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 text-gray-800">Emily Chen</h3>
+                    <p class="text-gray-600 text-sm mb-3">UI/UX Designer</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700 font-semibold">4.9</span>
+                        <span class="text-gray-500 ml-1 text-sm">(1,890)</span>
+                    </div>
+                    <div class="flex items-center justify-center mb-4 text-sm text-gray-600">
+                        <i class="fas fa-book mr-1"></i>
+                        <span>7 Courses</span>
+                        <i class="fas fa-users ml-4 mr-1"></i>
+                        <span>9K+ Students</span>
+                    </div>
+                    <a href="instructor-profile.html" class="block w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-semibold">View Profile</a>
+                </div>
+
+                <!-- Instructor 7 -->
+                <div class="instructor-card shadow-lg p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-3xl font-bold">MR</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 text-gray-800">Michael Rodriguez</h3>
+                    <p class="text-gray-600 text-sm mb-3">Machine Learning Expert</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700 font-semibold">4.8</span>
+                        <span class="text-gray-500 ml-1 text-sm">(2,340)</span>
+                    </div>
+                    <div class="flex items-center justify-center mb-4 text-sm text-gray-600">
+                        <i class="fas fa-book mr-1"></i>
+                        <span>11 Courses</span>
+                        <i class="fas fa-users ml-4 mr-1"></i>
+                        <span>16K+ Students</span>
+                    </div>
+                    <a href="instructor-profile.html" class="block w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-semibold">View Profile</a>
+                </div>
+
+                <!-- Instructor 8 -->
+                <div class="instructor-card shadow-lg p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-red-400 to-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-3xl font-bold">LS</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 text-gray-800">Lisa Singh</h3>
+                    <p class="text-gray-600 text-sm mb-3">Project Management</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700 font-semibold">4.7</span>
+                        <span class="text-gray-500 ml-1 text-sm">(980)</span>
+                    </div>
+                    <div class="flex items-center justify-center mb-4 text-sm text-gray-600">
+                        <i class="fas fa-book mr-1"></i>
+                        <span>6 Courses</span>
+                        <i class="fas fa-users ml-4 mr-1"></i>
+                        <span>8K+ Students</span>
+                    </div>
+                    <a href="instructor-profile.html" class="block w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-semibold">View Profile</a>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center">
+                <nav class="flex items-center space-x-2">
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition">Previous</button>
+                    <button class="px-4 py-2 bg-purple-600 text-white rounded-lg">1</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition">2</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition">Next</button>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">CertiLearn</span>
+                    </div>
+                    <p class="text-sm">Your trusted partner for professional certifications and career advancement.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="courses.html" class="hover:text-white transition">Courses</a></li>
+                        <li><a href="instructors.html" class="hover:text-white transition">Instructors</a></li>
+                        <li><a href="certification-exam.html" class="hover:text-white transition">Certifications</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 CertiLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter button functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+    <script>
+        // Mobile dropdown toggle
+        function toggleMobileDropdown() {
+            const dropdown = document.getElementById('mobile-home-dropdown');
+            const icon = document.getElementById('mobile-dropdown-icon');
+            dropdown.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+        // Mobile account dropdown toggle
+        function toggleAccountDropdown() {
+            const dropdown = document.getElementById('mobile-account-dropdown');
+            const icon = document.getElementById('mobile-account-dropdown-icon');
+            dropdown.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+

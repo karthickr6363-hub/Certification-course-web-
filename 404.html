@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found - CertiLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .error-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .error-number { font-size: 150px; line-height: 1; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen error-bg flex items-center justify-center p-8">
+        <div class="text-center text-white">
+            <div class="error-number font-bold mb-4">404</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Oops! Page Not Found</h1>
+            <p class="text-xl text-purple-100 mb-8 max-w-md mx-auto">The page you're looking for doesn't exist or has been moved. Let's get you back on track!</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html" class="bg-white text-purple-600 px-8 py-3 rounded-lg hover:bg-purple-50 transition font-semibold text-lg">
+                    <i class="fas fa-home mr-2"></i>Go to Homepage
+                </a>
+                <a href="courses.html" class="bg-white bg-opacity-20 backdrop-blur-sm text-white px-8 py-3 rounded-lg hover:bg-opacity-30 transition font-semibold text-lg border-2 border-white">
+                    <i class="fas fa-book mr-2"></i>Browse Courses
+                </a>
+            </div>
+            <div class="mt-12">
+                <div class="w-64 h-64 mx-auto bg-white bg-opacity-10 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <i class="fas fa-search text-6xl text-white opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

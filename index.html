@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>CertiLearn - Your Gateway to Professional Certifications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .hero-pattern { background-image: radial-gradient(circle at 25px 25px, rgba(255,255,255,0.1) 2%, transparent 0%), radial-gradient(circle at 75px 75px, rgba(255,255,255,0.1) 2%, transparent 0%); background-size: 100px 100px; }
+        .hero-heading { text-shadow: 0 4px 20px rgba(0,0,0,0.35); }
+        .hero-subheading { color: rgba(255,255,255,0.95); text-shadow: 0 3px 12px rgba(0,0,0,0.45); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes float-delay {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(-5deg); }
+        }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+        @keyframes float-delay-2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(-10deg); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delay { animation: float-delay 7s ease-in-out infinite; }
+        .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+        .animate-float-delay-2 { animation: float-delay-2 9s ease-in-out infinite; }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08); }
+        .category-card { background: #ffffff; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .category-card:hover { border-color: #667eea; box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15), 0 4px 10px rgba(0,0,0,0.08); }
+        .testimonial-card { background: #ffffff; border: 1px solid #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .testimonial-card:hover { border-color: #667eea; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.12), 0 4px 8px rgba(0,0,0,0.06); }
+        .course-card-modern { border: 1px solid #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04); }
+        .course-card-modern:hover { border-color: #667eea; box-shadow: 0 12px 32px rgba(102, 126, 234, 0.15), 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-4px); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 200px; box-shadow: 0 10px 25px rgba(0,0,0,0.12), 0 4px 10px rgba(0,0,0,0.08); border-radius: 12px; margin-top: 8px; z-index: 1000; border: 1px solid #e5e7eb; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 12px 20px; color: #374151; transition: all 0.2s; }
+        .dropdown-menu a:hover { background: #f3f4f6; color: #667eea; }
+        .dropdown-menu a:first-child { border-top-left-radius: 12px; border-top-right-radius: 12px; }
+        .dropdown-menu a:last-child { border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition cursor-pointer">
+                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">CertiLearn</span>
+                </a>
+                <!-- Desktop menu (shown on xl screens and above - 1280px+) -->
+                <div class="hidden xl:flex items-center space-x-8 tabmenubar">
+                    <div class="dropdown relative">
+                        <a href="index.html" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Home <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="index-v2.html">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="courses.html" class="text-gray-700 hover:text-purple-600 font-medium">Courses</a>
+                    <a href="instructors.html" class="text-gray-700 hover:text-purple-600 font-medium">Instructors</a>
+                    <a href="certification-exam.html" class="text-gray-700 hover:text-purple-600 font-medium">Certifications</a>
+                    <a href="pricing.html" class="text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-purple-600 font-medium">Blog</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Account <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Auth buttons (desktop) + mobile/tablet menu toggle -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden xl:flex items-center space-x-4">
+                        <a href="login.html" class="border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium">Login</a>
+                        <a href="register.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold">Sign Up</a>
+                    </div>
+                    <button class="xl:hidden text-gray-700 focus:outline-none hover:text-purple-600 transition mobilemenubar" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile / tablet menu (shown up to 1279px) -->
+            <div id="mobile-menu" class="xl:hidden hidden mt-4 space-y-2 mobilemenubar bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-lg">
+                <div>
+                    <button onclick="toggleMobileDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">
+                        <span>Home</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform" id="mobile-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-home-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="index.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-white transition">Home 1</a>
+                        <a href="index-v2.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-white transition">Home 2</a>
+                    </div>
+                </div>
+                <a href="courses.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Courses</a>
+                <a href="instructors.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Instructors</a>
+                <a href="certification-exam.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Certifications</a>
+                <a href="pricing.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Pricing</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Blog</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Contact</a>
+                <div>
+                    <button onclick="toggleAccountDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">
+                        <span>Account</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform" id="mobile-account-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-account-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="user-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-white transition">User Dashboard</a>
+                        <a href="admin-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-white transition">Admin Dashboard</a>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-gray-300 mt-2 space-y-2">
+                    <a href="login.html" class="block border border-purple-600 text-purple-600 px-5 py-2.5 rounded-lg hover:bg-purple-50 transition font-medium text-center">Login</a>
+                    <a href="register.html" class="block bg-purple-600 text-white px-6 py-2.5 rounded-lg hover:bg-purple-700 transition font-semibold text-center shadow-md">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+        class="relative gradient-bg hero-pattern pt-28 pb-20 md:pt-32 md:pb-24 bg-cover bg-center bg-no-repeat"
+        style="background-image: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');"
+    >
+        <!-- Dark overlay to ensure hero text is clearly visible on all backgrounds -->
+        <div class="absolute inset-0 bg-black/30"></div>
+
+        <!-- Decorative floating elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse"></div>
+            <div class="absolute top-40 right-20 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse delay-75"></div>
+            <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-white/10 rounded-full blur-xl animate-pulse delay-150"></div>
+            <div class="absolute bottom-40 right-1/3 w-28 h-28 bg-white/10 rounded-full blur-2xl animate-pulse delay-200"></div>
+        </div>
+
+        <!-- Floating certification icons -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <i class="fas fa-certificate absolute top-32 left-16 text-white/20 text-6xl transform rotate-12 animate-float"></i>
+            <i class="fas fa-graduation-cap absolute top-40 right-20 text-white/20 text-5xl transform -rotate-12 animate-float-delay"></i>
+            <i class="fas fa-award absolute bottom-32 left-20 text-white/20 text-4xl transform rotate-45 animate-float-slow"></i>
+            <i class="fas fa-trophy absolute bottom-40 right-16 text-white/20 text-5xl transform -rotate-45 animate-float-delay-2"></i>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center text-white">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight hero-heading">Master Skills, Earn Certifications</h1>
+                <p class="text-lg md:text-2xl mb-8 hero-subheading">Join thousands of professionals advancing their careers with industry-recognized certifications</p>
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto shadow-2xl border border-white/20">
+                    <input type="text" placeholder="Search courses, certifications..." class="flex-1 px-5 py-3.5 text-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base">
+                    <button class="bg-purple-600 text-white px-8 py-3.5 rounded-xl hover:bg-purple-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Search</button>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 mt-10">
+                    <button class="bg-white text-purple-600 px-8 py-3.5 rounded-xl hover:bg-purple-50 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border border-white/20">Browse Courses</button>
+                    <button class="bg-transparent border-2 border-white/80 text-white px-8 py-3.5 rounded-xl hover:bg-white hover:text-purple-600 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 backdrop-blur-sm">View Certifications</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Popular Categories</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Explore our comprehensive range of certification courses designed to advance your career</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="category-card rounded-2xl p-8 card-hover cursor-pointer text-center transition-all duration-300">
+                    <div class="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 mx-auto transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-cloud text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Cloud Computing</h3>
+                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">AWS, Azure, GCP certifications</p>
+                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">24 Courses</span>
+                </div>
+                <div class="category-card rounded-2xl p-8 card-hover cursor-pointer text-center transition-all duration-300">
+                    <div class="w-20 h-20 bg-green-50 rounded-2xl flex items-center justify-center mb-6 mx-auto transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-shield-alt text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Cybersecurity</h3>
+                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">Security+, CEH, CISSP</p>
+                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">18 Courses</span>
+                </div>
+                <div class="category-card rounded-2xl p-8 card-hover cursor-pointer text-center transition-all duration-300">
+                    <div class="w-20 h-20 bg-yellow-50 rounded-2xl flex items-center justify-center mb-6 mx-auto transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-code text-yellow-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Programming</h3>
+                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">Python, Java, JavaScript</p>
+                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">32 Courses</span>
+                </div>
+                <div class="category-card rounded-2xl p-8 card-hover cursor-pointer text-center transition-all duration-300">
+                    <div class="w-20 h-20 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 mx-auto transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-chart-line text-purple-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Data Science</h3>
+                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">ML, AI, Data Analytics</p>
+                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">15 Courses</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Courses -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-14 gap-4">
+                <div class="text-center md:text-left">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Top Courses</h2>
+                    <p class="text-lg text-gray-600">Handpicked courses from industry experts</p>
+                </div>
+                <a href="courses.html" class="text-purple-600 hover:text-purple-700 font-semibold text-base flex items-center gap-2 group">
+                    View All 
+                    <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="course-card-modern bg-white rounded-2xl overflow-hidden transition-all duration-300">
+                    <div class="h-52 bg-gray-200 relative overflow-hidden">
+                        <img src="https://images.pexels.com/photos/6568691/pexels-photo-6568691.jpeg" alt="AWS Certified Solutions Architect" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <span class="absolute top-4 right-4 bg-white text-purple-600 px-4 py-1.5 rounded-full text-xs font-bold shadow-md backdrop-blur-sm">Bestseller</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2.5 text-gray-900 leading-tight">AWS Certified Solutions IT</h3>
+                        <p class="text-gray-600 mb-5 text-sm leading-relaxed line-clamp-2">Master cloud architecture and design scalable solutions by Amazon Web</p>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="flex items-center gap-1.5">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                    <span class="ml-1.5 text-gray-900 font-semibold text-sm">4.8</span>
+                                </div>
+                                <span class="text-gray-500 text-sm">(2,450)</span>
+                            </div>
+                            <span class="text-purple-600 font-bold text-2xl">$89</span>
+                        </div>
+                        <button class="w-full bg-purple-600 text-white py-3 rounded-xl hover:bg-purple-700 transition-all duration-200 font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card-modern bg-white rounded-2xl overflow-hidden transition-all duration-300">
+                    <div class="h-52 bg-gray-200 relative overflow-hidden">
+                        <img src="https://images.pexels.com/photos/5475752/pexels-photo-5475752.jpeg" alt="Certified Ethical Hacker" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <span class="absolute top-4 right-4 bg-white text-purple-600 px-4 py-1.5 rounded-full text-xs font-bold shadow-md backdrop-blur-sm">Bestseller</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2.5 text-gray-900 leading-tight">Certified Ethical Hacker (CEH)</h3>
+                        <p class="text-gray-600 mb-5 text-sm leading-relaxed line-clamp-2">Learn ethical hacking and penetration testing by a certified ethical hacker</p>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="flex items-center gap-1.5">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                    <span class="ml-1.5 text-gray-900 font-semibold text-sm">4.7</span>
+                                </div>
+                                <span class="text-gray-500 text-sm">(1,890)</span>
+                            </div>
+                            <span class="text-purple-600 font-bold text-2xl">$99</span>
+                        </div>
+                        <button class="w-full bg-purple-600 text-white py-3 rounded-xl hover:bg-purple-700 transition-all duration-200 font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card-modern bg-white rounded-2xl overflow-hidden transition-all duration-300">
+                    <div class="h-52 bg-gray-200 relative overflow-hidden">
+                        <img src="https://images.pexels.com/photos/6424591/pexels-photo-6424591.jpeg" alt="Python Data Science Mastery" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <span class="absolute top-4 right-4 bg-white text-purple-600 px-4 py-1.5 rounded-full text-xs font-bold shadow-md backdrop-blur-sm">Bestseller</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2.5 text-gray-900 leading-tight">Python Data Science Mastery</h3>
+                        <p class="text-gray-600 mb-5 text-sm leading-relaxed line-clamp-2">Complete guide to data science with Python by a data science expert</p>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="flex items-center gap-1.5">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                    <span class="ml-1.5 text-gray-900 font-semibold text-sm">4.9</span>
+                                </div>
+                                <span class="text-gray-500 text-sm">(3,120)</span>
+                            </div>
+                            <span class="text-purple-600 font-bold text-2xl">$79</span>
+                        </div>
+                        <button class="w-full bg-purple-600 text-white py-3 rounded-xl hover:bg-purple-700 transition-all duration-200 font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Why Choose Us</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">We're committed to your success with industry-leading programs and expert guidance</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-8 rounded-2xl bg-gray-50 hover:bg-white transition-all duration-300 hover:shadow-lg border border-transparent hover:border-purple-100">
+                    <div class="w-20 h-20 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6 transform transition-transform duration-300 hover:scale-110">
+                        <i class="fas fa-certificate text-purple-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Industry Recognized</h3>
+                    <p class="text-gray-600 leading-relaxed">Certifications accepted by top employers worldwide</p>
+                </div>
+                <div class="text-center p-8 rounded-2xl bg-gray-50 hover:bg-white transition-all duration-300 hover:shadow-lg border border-transparent hover:border-purple-100">
+                    <div class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 transform transition-transform duration-300 hover:scale-110">
+                        <i class="fas fa-users text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Expert Instructors</h3>
+                    <p class="text-gray-600 leading-relaxed">Learn from industry professionals with years of experience</p>
+                </div>
+                <div class="text-center p-8 rounded-2xl bg-gray-50 hover:bg-white transition-all duration-300 hover:shadow-lg border border-transparent hover:border-purple-100">
+                    <div class="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 transform transition-transform duration-300 hover:scale-110">
+                        <i class="fas fa-clock text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Lifetime Access</h3>
+                    <p class="text-gray-600 leading-relaxed">Access course materials and updates forever</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Instructors -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Featured Instructors</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Learn from industry experts and experienced professionals</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-200">
+                    <div class="w-28 h-28 rounded-full mx-auto mb-5 overflow-hidden ring-4 ring-purple-50 shadow-md">
+                        <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" alt="John Smith" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5 text-gray-900">John Smith</h3>
+                    <p class="text-gray-600 text-sm mb-3">AWS Solutions Architect</p>
+                    <div class="flex items-center justify-center mb-4 gap-1">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <span class="text-gray-900 font-semibold text-sm">4.9</span>
+                    </div>
+                    <span class="text-sm text-purple-600 font-semibold">12 Courses</span>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-200">
+                    <div class="w-28 h-28 rounded-full mx-auto mb-5 overflow-hidden ring-4 ring-purple-50 shadow-md">
+                        <img src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg" alt="Maria Johnson" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5 text-gray-900">Maria Johnson</h3>
+                    <p class="text-gray-600 text-sm mb-3">Cybersecurity Expert</p>
+                    <div class="flex items-center justify-center mb-4 gap-1">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <span class="text-gray-900 font-semibold text-sm">4.8</span>
+                    </div>
+                    <span class="text-sm text-purple-600 font-semibold">8 Courses</span>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-200">
+                    <div class="w-28 h-28 rounded-full mx-auto mb-5 overflow-hidden ring-4 ring-purple-50 shadow-md">
+                        <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg" alt="David Williams" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5 text-gray-900">David Williams</h3>
+                    <p class="text-gray-600 text-sm mb-3">Data Science Specialist</p>
+                    <div class="flex items-center justify-center mb-4 gap-1">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <span class="text-gray-900 font-semibold text-sm">4.9</span>
+                    </div>
+                    <span class="text-sm text-purple-600 font-semibold">15 Courses</span>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-200">
+                    <div class="w-28 h-28 rounded-full mx-auto mb-5 overflow-hidden ring-4 ring-purple-50 shadow-md">
+                        <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg" alt="Sarah Brown" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5 text-gray-900">Sarah Brown</h3>
+                    <p class="text-gray-600 text-sm mb-3">Full Stack Developer</p>
+                    <div class="flex items-center justify-center mb-4 gap-1">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <span class="text-gray-900 font-semibold text-sm">4.7</span>
+                    </div>
+                    <span class="text-sm text-purple-600 font-semibold">10 Courses</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Testimonials -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Student Testimonials</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Hear from our successful students who transformed their careers</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="testimonial-card rounded-2xl p-8 transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full mr-4 overflow-hidden ring-2 ring-purple-100">
+                            <img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg" alt="Alex Thompson" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-base">Alex Thompson</h4>
+                            <p class="text-sm text-gray-600">IT Engineer</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-start mb-4 gap-0.5">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed text-sm italic">"The AWS certification course helped me land my dream job. The instructors are amazing!"</p>
+                </div>
+                <div class="testimonial-card rounded-2xl p-8 transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full mr-4 overflow-hidden ring-2 ring-purple-100">
+                            <img src="https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg" alt="Emily Chen" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-base">Emily Chen</h4>
+                            <p class="text-sm text-gray-600">Security Analyst</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-start mb-4 gap-0.5">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed text-sm italic">"CEH certification opened doors I never thought possible. Highly recommend!"</p>
+                </div>
+                <div class="testimonial-card rounded-2xl p-8 transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full mr-4 overflow-hidden ring-2 ring-purple-100">
+                            <img src="https://images.pexels.com/photos/832998/pexels-photo-832998.jpeg" alt="Michael Rodriguez" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-base">Michael Rodriguez</h4>
+                            <p class="text-sm text-gray-600">Data Scientist</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-start mb-4 gap-0.5">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed text-sm italic">"The Python course is comprehensive and practical. Worth every penny!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center text-white">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Stay Updated</h2>
+                <p class="text-xl mb-10 text-purple-100 leading-relaxed">Get the latest courses, certifications, and learning tips delivered to your inbox</p>
+                <div class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+                    <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-3.5 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 text-base shadow-lg">
+                    <button class="bg-white text-purple-600 px-8 py-3.5 rounded-xl hover:bg-purple-50 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">CertiLearn</span>
+                    </div>
+                    <p class="text-sm">Your trusted partner for professional certifications and career advancement.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="courses.html" class="hover:text-white transition">Courses</a></li>
+                        <li><a href="instructors.html" class="hover:text-white transition">Instructors</a></li>
+                        <li><a href="certification-exam.html" class="hover:text-white transition">Certifications</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+            <p>&copy; 2025 CertiLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        function toggleMobileDropdown() {
+            const dropdown = document.getElementById('mobile-home-dropdown');
+            const icon = document.getElementById('mobile-dropdown-icon');
+            if (dropdown && icon) {
+                dropdown.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+        // Mobile account dropdown toggle
+        function toggleAccountDropdown() {
+            const dropdown = document.getElementById('mobile-account-dropdown');
+            const icon = document.getElementById('mobile-account-dropdown-icon');
+            if (dropdown && icon) {
+                dropdown.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+

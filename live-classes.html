@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Classes & Webinars - CertiLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .live-badge { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .upcoming-card { border-left: 5px solid #667eea; transition: all 0.3s ease; }
+        .upcoming-card:hover { transform: translateX(5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .recorded-card { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 200px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 8px; margin-top: 8px; z-index: 1000; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 12px 20px; color: #374151; transition: all 0.2s; }
+        .dropdown-menu a:hover { background: #f3f4f6; color: #667eea; }
+        .dropdown-menu a:first-child { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .dropdown-menu a:last-child { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">CertiLearn</span>
+                </a>
+                <!-- Desktop menu (lg and up) -->
+                <div class="hidden xl:flex items-center space-x-8 tabmenubar">
+                    <div class="dropdown relative">
+                        <a href="index.html" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Home <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="index-v2.html">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="courses.html" class="text-gray-700 hover:text-purple-600 font-medium">Courses</a>
+                    <a href="instructors.html" class="text-gray-700 hover:text-purple-600 font-medium">Instructors</a>
+                    <a href="certification-exam.html" class="text-gray-700 hover:text-purple-600 font-medium">Certifications</a>
+                    <a href="pricing.html" class="text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-purple-600 font-medium">Blog</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Account <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Auth buttons (desktop) + mobile toggle -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden xl:flex items-center space-x-4">
+                        <a href="login.html" class="border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium">Login</a>
+                        <a href="register.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold">Sign Up</a>
+                    </div>
+                    <button class="xl:hidden text-gray-700 focus:outline-none hover:text-purple-600 transition mobilemenubar" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile / tablet menu -->
+            <div id="mobile-menu" class="xl:hidden hidden mt-4 space-y-2 mobilemenubar bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-lg">
+                <div>
+                    <button onclick="toggleMobileDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium">
+                        <span>Home</span>
+                        <i class="fas fa-chevron-down text-xs" id="mobile-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-home-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="index.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Home 1</a>
+                        <a href="index-v2.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Home 2</a>
+                    </div>
+                </div>
+                <a href="courses.html" class="block text-gray-700 hover:text-purple-600 font-medium">Courses</a>
+                <a href="instructors.html" class="block text-gray-700 hover:text-purple-600 font-medium">Instructors</a>
+                <a href="certification-exam.html" class="block text-gray-700 hover:text-purple-600 font-medium">Certifications</a>
+                <a href="pricing.html" class="block text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-purple-600 font-medium">Blog</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                <div>
+                    <button onclick="toggleAccountDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium">
+                        <span>Account</span>
+                        <i class="fas fa-chevron-down text-xs" id="mobile-account-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-account-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="user-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">User Dashboard</a>
+                        <a href="admin-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm">Admin Dashboard</a>
+                    </div>
+                </div>
+                <a href="login.html" class="block border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium text-center">Login</a>
+                <a href="register.html" class="block bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold text-center">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-indigo-600 to-purple-600 py-16 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-4">Live Classes & Webinars</h1>
+            <p class="text-xl text-indigo-100 max-w-2xl mx-auto">Join interactive live sessions with expert instructors and learn in real-time</p>
+        </div>
+    </section>
+
+    <!-- Upcoming Live Sessions -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Upcoming Live Sessions</h2>
+                <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold">
+                    <i class="fas fa-calendar-plus mr-2"></i>Schedule Notification
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Session 1 -->
+                <div class="upcoming-card bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="live-badge text-white text-xs px-3 py-1 rounded-full font-bold">LIVE NOW</span>
+                        <span class="text-sm text-gray-500">Today</span>
+                    </div>
+                    <div class="h-40 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg mb-4 relative">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <button class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-bold">
+                                <i class="fas fa-video mr-2"></i>Join Now
+                            </button>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">AWS Cloud Architecture Deep Dive</h3>
+                    <p class="text-gray-600 mb-4">Learn advanced AWS architecture patterns and best practices</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>2:00 PM - 4:00 PM EST</span>
+                        <i class="fas fa-users ml-4 mr-2"></i>
+                        <span>250 attendees</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white text-sm font-bold">JS</span>
+                        </div>
+                        <span class="text-gray-700 font-semibold">John Smith</span>
+                    </div>
+                </div>
+
+                <!-- Session 2 -->
+                <div class="upcoming-card bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-yellow-400 text-gray-800 text-xs px-3 py-1 rounded-full font-bold">UPCOMING</span>
+                        <span class="text-sm text-gray-500">Tomorrow</span>
+                    </div>
+                    <div class="h-40 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mb-4"></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Cybersecurity Fundamentals</h3>
+                    <p class="text-gray-600 mb-4">Introduction to ethical hacking and security best practices</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>10:00 AM - 12:00 PM EST</span>
+                        <i class="fas fa-users ml-4 mr-2"></i>
+                        <span>180 registered</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm font-bold">MJ</span>
+                            </div>
+                            <span class="text-gray-700 font-semibold">Maria Johnson</span>
+                        </div>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">
+                            Register
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Session 3 -->
+                <div class="upcoming-card bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-yellow-400 text-gray-800 text-xs px-3 py-1 rounded-full font-bold">UPCOMING</span>
+                        <span class="text-sm text-gray-500">March 18, 2024</span>
+                    </div>
+                    <div class="h-40 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg mb-4"></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Data Science with Python</h3>
+                    <p class="text-gray-600 mb-4">Hands-on workshop on data analysis and machine learning</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>3:00 PM - 5:00 PM EST</span>
+                        <i class="fas fa-users ml-4 mr-2"></i>
+                        <span>320 registered</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm font-bold">DW</span>
+                            </div>
+                            <span class="text-gray-700 font-semibold">David Williams</span>
+                        </div>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">
+                            Register
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Session 4 -->
+                <div class="upcoming-card bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-yellow-400 text-gray-800 text-xs px-3 py-1 rounded-full font-bold">UPCOMING</span>
+                        <span class="text-sm text-gray-500">March 20, 2024</span>
+                    </div>
+                    <div class="h-40 bg-gradient-to-br from-red-400 to-red-600 rounded-lg mb-4"></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Full Stack Development Bootcamp</h3>
+                    <p class="text-gray-600 mb-4">Build modern web applications from scratch</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>11:00 AM - 1:00 PM EST</span>
+                        <i class="fas fa-users ml-4 mr-2"></i>
+                        <span>275 registered</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm font-bold">SB</span>
+                            </div>
+                            <span class="text-gray-700 font-semibold">Sarah Brown</span>
+                        </div>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">
+                            Register
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Session 5 -->
+                <div class="upcoming-card bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-yellow-400 text-gray-800 text-xs px-3 py-1 rounded-full font-bold">UPCOMING</span>
+                        <span class="text-sm text-gray-500">March 22, 2024</span>
+                    </div>
+                    <div class="h-40 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-lg mb-4"></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Kubernetes Workshop</h3>
+                    <p class="text-gray-600 mb-4">Master container orchestration with hands-on labs</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>2:00 PM - 4:00 PM EST</span>
+                        <i class="fas fa-users ml-4 mr-2"></i>
+                        <span>195 registered</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm font-bold">RK</span>
+                            </div>
+                            <span class="text-gray-700 font-semibold">Robert Kim</span>
+                        </div>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">
+                            Register
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Session 6 -->
+                <div class="upcoming-card bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-yellow-400 text-gray-800 text-xs px-3 py-1 rounded-full font-bold">UPCOMING</span>
+                        <span class="text-sm text-gray-500">March 25, 2024</span>
+                    </div>
+                    <div class="h-40 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg mb-4"></div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Azure Cloud Fundamentals</h3>
+                    <p class="text-gray-600 mb-4">Get started with Microsoft Azure cloud platform</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>1:00 PM - 3:00 PM EST</span>
+                        <i class="fas fa-users ml-4 mr-2"></i>
+                        <span>210 registered</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm font-bold">JS</span>
+                            </div>
+                            <span class="text-gray-700 font-semibold">John Smith</span>
+                        </div>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">
+                            Register
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recorded Webinars -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800">Recorded Webinars Archive</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="recorded-card rounded-xl p-4 shadow-md hover:shadow-xl transition">
+                    <div class="h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg mb-4 relative">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <button class="bg-white text-blue-600 w-12 h-12 rounded-full flex items-center justify-center hover:bg-blue-50 transition">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <h3 class="font-bold mb-2 text-gray-800">AWS Best Practices</h3>
+                    <p class="text-sm text-gray-600 mb-2">Recorded on March 5, 2024</p>
+                    <span class="text-xs text-gray-500">1.2K views</span>
+                </div>
+                <div class="recorded-card rounded-xl p-4 shadow-md hover:shadow-xl transition">
+                    <div class="h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mb-4 relative">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <button class="bg-white text-green-600 w-12 h-12 rounded-full flex items-center justify-center hover:bg-green-50 transition">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <h3 class="font-bold mb-2 text-gray-800">Cybersecurity Essentials</h3>
+                    <p class="text-sm text-gray-600 mb-2">Recorded on Feb 28, 2024</p>
+                    <span class="text-xs text-gray-500">980 views</span>
+                </div>
+                <div class="recorded-card rounded-xl p-4 shadow-md hover:shadow-xl transition">
+                    <div class="h-32 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg mb-4 relative">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <button class="bg-white text-purple-600 w-12 h-12 rounded-full flex items-center justify-center hover:bg-purple-50 transition">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <h3 class="font-bold mb-2 text-gray-800">Python for Data Science</h3>
+                    <p class="text-sm text-gray-600 mb-2">Recorded on Feb 20, 2024</p>
+                    <span class="text-xs text-gray-500">1.5K views</span>
+                </div>
+                <div class="recorded-card rounded-xl p-4 shadow-md hover:shadow-xl transition">
+                    <div class="h-32 bg-gradient-to-br from-red-400 to-red-600 rounded-lg mb-4 relative">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <button class="bg-white text-red-600 w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-50 transition">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <h3 class="font-bold mb-2 text-gray-800">DevOps Fundamentals</h3>
+                    <p class="text-sm text-gray-600 mb-2">Recorded on Feb 15, 2024</p>
+                    <span class="text-xs text-gray-500">1.1K views</span>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button class="bg-gray-200 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-300 transition font-semibold">
+                    View All Recordings
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">CertiLearn</span>
+                    </div>
+                    <p class="text-sm">Your trusted partner for professional certifications and career advancement.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="courses.html" class="hover:text-white transition">Courses</a></li>
+                        <li><a href="instructors.html" class="hover:text-white transition">Instructors</a></li>
+                        <li><a href="certification-exam.html" class="hover:text-white transition">Certifications</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 CertiLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        function toggleMobileDropdown() {
+            const dropdown = document.getElementById('mobile-home-dropdown');
+            const icon = document.getElementById('mobile-dropdown-icon');
+            dropdown.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+        // Mobile account dropdown toggle
+        function toggleAccountDropdown() {
+            const dropdown = document.getElementById('mobile-account-dropdown');
+            const icon = document.getElementById('mobile-account-dropdown-icon');
+            dropdown.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+

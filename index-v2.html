@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>CertiLearn - Professional Certification Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .cert-hero { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%); }
+        .cert-card { background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #667eea; box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .cert-card:hover { border-color: #667eea; box-shadow: 0 12px 32px rgba(102, 126, 234, 0.15), 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-4px); }
+        .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        @media (min-width: 768px) {
+            .process-step-item:not(:last-child)::after { 
+                content: ''; 
+                position: absolute; 
+                top: 40px; 
+                right: -8.33%; 
+                width: 16.66%; 
+                height: 2px; 
+                background: #667eea; 
+                z-index: 1;
+            }
+        }
+        .cert-badge { background: #667eea; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes float-delay {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(-5deg); }
+        }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+        @keyframes float-delay-2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(-10deg); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delay { animation: float-delay 7s ease-in-out infinite; }
+        .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+        .animate-float-delay-2 { animation: float-delay-2 9s ease-in-out infinite; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 200px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 8px; margin-top: 8px; z-index: 1000; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 12px 20px; color: #374151; transition: all 0.2s; }
+        .dropdown-menu a:hover { background: #f3f4f6; color: #667eea; }
+        .dropdown-menu a:first-child { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .dropdown-menu a:last-child { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">CertiLearn</span>
+                </a>
+                <!-- Desktop menu (shown on xl screens and above - 1280px+) -->
+                <div class="hidden xl:flex items-center space-x-8 tabmenubar">
+                    <div class="dropdown relative">
+                        <a href="index.html" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Home <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="index-v2.html">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="courses.html" class="text-gray-700 hover:text-purple-600 font-medium">Courses</a>
+                    <a href="instructors.html" class="text-gray-700 hover:text-purple-600 font-medium">Instructors</a>
+                    <a href="certification-exam.html" class="text-gray-700 hover:text-purple-600 font-medium">Certifications</a>
+                    <a href="pricing.html" class="text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-purple-600 font-medium">Blog</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-700 hover:text-purple-600 font-medium flex items-center">
+                            Account <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Auth buttons (desktop) + mobile/tablet menu toggle -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden xl:flex items-center space-x-4">
+                        <a href="login.html" class="border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium">Login</a>
+                        <a href="register.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold">Sign Up</a>
+                    </div>
+                    <button class="xl:hidden text-gray-700 focus:outline-none hover:text-purple-600 transition mobilemenubar" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile / tablet menu (shown up to 1279px) -->
+            <div id="mobile-menu" class="xl:hidden hidden mt-4 space-y-2 mobilemenubar bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-lg">
+                <div>
+                    <button onclick="toggleMobileDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">
+                        <span>Home</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform" id="mobile-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-home-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="index.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-white transition">Home 1</a>
+                        <a href="index-v2.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-white transition">Home 2</a>
+                    </div>
+                </div>
+                <a href="courses.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Courses</a>
+                <a href="instructors.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Instructors</a>
+                <a href="certification-exam.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Certifications</a>
+                <a href="pricing.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Pricing</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Blog</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">Contact</a>
+                <div>
+                    <button onclick="toggleAccountDropdown()" class="w-full flex items-center justify-between text-gray-700 hover:text-purple-600 font-medium py-2 px-3 rounded-lg hover:bg-white transition">
+                        <span>Account</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform" id="mobile-account-dropdown-icon"></i>
+                    </button>
+                    <div id="mobile-account-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="user-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-white transition">User Dashboard</a>
+                        <a href="admin-dashboard.html" class="block text-gray-600 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-white transition">Admin Dashboard</a>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-gray-300 mt-2 space-y-2">
+                    <a href="login.html" class="block border border-purple-600 text-purple-600 px-5 py-2.5 rounded-lg hover:bg-purple-50 transition font-medium text-center">Login</a>
+                    <a href="register.html" class="block bg-purple-600 text-white px-6 py-2.5 rounded-lg hover:bg-purple-700 transition font-semibold text-center shadow-md">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Certification Hero Banner -->
+    <section class="cert-hero py-24 text-white relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style="background-image: linear-gradient(135deg, rgba(30, 60, 114, 0.9) 0%, rgba(42, 82, 152, 0.9) 50%, rgba(126, 139, 163, 0.9) 100%), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <!-- Gradient overlay for better text readability -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-purple-900/40 to-indigo-900/50"></div>
+        
+        <!-- Decorative geometric shapes -->
+        <div class="absolute inset-0 opacity-10 overflow-hidden">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 translate-y-1/2 animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-white rounded-full opacity-20 blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white rounded-full opacity-20 blur-3xl animate-pulse" style="animation-delay: 1.5s;"></div>
+        </div>
+
+        <!-- Floating certification badges and icons -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-32 left-12 w-16 h-16 bg-white/10 rounded-full backdrop-blur-sm border-2 border-white/20 flex items-center justify-center animate-float">
+                <i class="fas fa-certificate text-2xl text-white/60"></i>
+            </div>
+            <div class="absolute top-48 right-16 w-20 h-20 bg-white/10 rounded-full backdrop-blur-sm border-2 border-white/20 flex items-center justify-center animate-float-delay">
+                <i class="fas fa-trophy text-3xl text-white/60"></i>
+            </div>
+            <div class="absolute bottom-40 left-20 w-14 h-14 bg-white/10 rounded-full backdrop-blur-sm border-2 border-white/20 flex items-center justify-center animate-float-slow">
+                <i class="fas fa-award text-xl text-white/60"></i>
+            </div>
+            <div class="absolute bottom-32 right-24 w-18 h-18 bg-white/10 rounded-full backdrop-blur-sm border-2 border-white/20 flex items-center justify-center animate-float-delay-2">
+                <i class="fas fa-medal text-2xl text-white/60"></i>
+            </div>
+            <div class="absolute top-1/2 right-12 w-12 h-12 bg-white/10 rounded-full backdrop-blur-sm border-2 border-white/20 flex items-center justify-center animate-float-slow">
+                <i class="fas fa-star text-lg text-white/60"></i>
+            </div>
+        </div>
+
+        <!-- Animated particles/dots -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-20 left-1/4 w-2 h-2 bg-white/30 rounded-full animate-pulse" style="animation-delay: 0s;"></div>
+            <div class="absolute top-32 right-1/3 w-2 h-2 bg-white/30 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+            <div class="absolute bottom-24 left-1/3 w-2 h-2 bg-white/30 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-32 right-1/4 w-2 h-2 bg-white/30 rounded-full animate-pulse" style="animation-delay: 1.5s;"></div>
+            <div class="absolute top-1/3 left-1/2 w-2 h-2 bg-white/30 rounded-full animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="inline-block bg-white bg-opacity-20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/30 shadow-lg transform hover:scale-105 transition">
+                    <span class="text-sm font-semibold">🏆 Industry-Leading Certifications</span>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 drop-shadow-2xl">Get Certified. Advance Your Career.</h1>
+                <p class="text-xl mb-8 text-blue-100 drop-shadow-lg">Join 50,000+ professionals who have transformed their careers with our accredited certification programs</p>
+                <a href="register.html" class="inline-block bg-white text-purple-600 px-8 py-4 rounded-xl hover:bg-purple-50 transition-all duration-200 font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-0.5">Get Certified Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-white -mt-8 relative z-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="stat-card rounded-2xl p-8 text-white text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/10">
+                    <div class="text-5xl font-bold mb-3">50K+</div>
+                    <div class="text-purple-100 text-sm font-medium">Students Trained</div>
+                </div>
+                <div class="stat-card rounded-2xl p-8 text-white text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/10">
+                    <div class="text-5xl font-bold mb-3">35K+</div>
+                    <div class="text-purple-100 text-sm font-medium">Certificates Issued</div>
+                </div>
+                <div class="stat-card rounded-2xl p-8 text-white text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/10">
+                    <div class="text-5xl font-bold mb-3">95%</div>
+                    <div class="text-purple-100 text-sm font-medium">Pass Rate</div>
+                </div>
+                <div class="stat-card rounded-2xl p-8 text-white text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/10">
+                    <div class="text-5xl font-bold mb-3">200+</div>
+                    <div class="text-purple-100 text-sm font-medium">Industry Partners</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Certification Tracks -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Top Certification Tracks</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Choose your path to professional excellence</p>
+            </div>
+            
+            <!-- IT Certifications -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                    <i class="fas fa-server text-blue-600 mr-3"></i>IT Certifications
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fab fa-aws text-blue-600 text-2xl"></i>
+                            </div>
+                            <span class="cert-badge text-white text-xs px-3 py-1 rounded-full font-semibold">Popular</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">AWS Certified Solutions</h4>
+                        <p class="text-gray-600 mb-4">Master cloud architecture and design scalable AWS solutions</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.9 ⭐ (2,450 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fab fa-microsoft text-blue-600 text-2xl"></i>
+                            </div>
+                            <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">New</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">Microsoft Azure Administrator</h4>
+                        <p class="text-gray-600 mb-4">Become an expert in Azure cloud infrastructure (2025 updated)</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.8 ⭐ (1,890 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
+                            </div>
+                            <span class="cert-badge text-white text-xs px-3 py-1 rounded-full font-semibold">Hot</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">Certified Ethical Hacker (CEH)</h4>
+                        <p class="text-gray-600 mb-4">Learn ethical hacking and penetration testing skills (2025 updated)</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.7 ⭐ (2,120 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Certifications -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                    <i class="fas fa-briefcase text-purple-600 mr-3"></i>Business Certifications
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-bar text-purple-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">PMP Certification</h4>
+                        <p class="text-gray-600 mb-4">Project Management Professional certification (2025 updated)</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.8 ⭐ (1,650 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-users-cog text-purple-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">Six Sigma Green Belt</h4>
+                        <p class="text-gray-600 mb-4">Process improvement and quality management</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.7 ⭐ (980 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-handshake text-purple-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">Salesforce Administrator</h4>
+                        <p class="text-gray-600 mb-4">CRM administration and management (2025 updated)</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.9 ⭐ (1,420 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Certifications -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                    <i class="fas fa-palette text-pink-600 mr-3"></i>Design Certifications
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fab fa-figma text-pink-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">Adobe Certified Expert</h4>
+                        <p class="text-gray-600 mb-4">Master Adobe Creative Suite</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.8 ⭐ (1,230 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-paint-brush text-pink-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">UI/UX Design Professional</h4>
+                        <p class="text-gray-600 mb-4">User interface and experience design</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.9 ⭐ (1,890 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-cube text-pink-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">3D Modeling Specialist</h4>
+                        <p class="text-gray-600 mb-4">3D design and animation mastery</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.7 ⭐ (950 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Finance & Accounting -->
+            <div>
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                    <i class="fas fa-dollar-sign text-green-600 mr-3"></i>Finance & Accounting
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-calculator text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">CPA Certification</h4>
+                        <p class="text-gray-600 mb-4">Certified Public Accountant preparation</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.8 ⭐ (1,560 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">CFA Level 1</h4>
+                        <p class="text-gray-600 mb-4">Chartered Financial Analyst preparation (2025 updated)</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.9 ⭐ (1,320 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-2xl p-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-file-invoice-dollar text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">QuickBooks Certified</h4>
+                        <p class="text-gray-600 mb-4">Accounting software expertise</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">4.7 ⭐ (890 reviews)</span>
+                            <a href="course-details.html" class="text-blue-600 font-semibold hover:underline">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Exam Schedule -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Upcoming Exam Schedule</h2>
+            <p class="text-center text-gray-600 mb-12">Register now for upcoming certification exams</p>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 mb-6">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 text-gray-800">AWS Solutions Architect</h3>
+                            <p class="text-gray-600 mb-2"><i class="far fa-calendar-alt mr-2"></i>March 15, 2025</p>
+                            <p class="text-gray-600"><i class="far fa-clock mr-2"></i>9:00 AM - 12:00 PM EST</p>
+                        </div>
+                        <button class="mt-4 md:mt-0 bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">Register Now</button>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 mb-6">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 text-gray-800">Certified Ethical Hacker (CEH)</h3>
+                            <p class="text-gray-600 mb-2"><i class="far fa-calendar-alt mr-2"></i>March 22, 2025</p>
+                            <p class="text-gray-600"><i class="far fa-clock mr-2"></i>2:00 PM - 5:00 PM EST</p>
+                        </div>
+                        <button class="mt-4 md:mt-0 bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition font-semibold">Register Now</button>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 text-gray-800">PMP Certification</h3>
+                            <p class="text-gray-600 mb-2"><i class="far fa-calendar-alt mr-2"></i>April 5, 2025</p>
+                            <p class="text-gray-600"><i class="far fa-clock mr-2"></i>10:00 AM - 2:00 PM EST</p>
+                        </div>
+                        <button class="mt-4 md:mt-0 bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition font-semibold">Register Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Success Stories</h2>
+            <p class="text-center text-gray-600 mb-12">Real achievements from our certified professionals</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white text-2xl font-bold">RK</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800">Robert Kim</h4>
+                            <p class="text-gray-600">AWS Solutions Architect Certified</p>
+                            <p class="text-sm text-gray-500">Placed at Amazon Web</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"The AWS certification course was comprehensive and practical. Within 2 months of certification, I received multiple job offers and landed my dream role at AWS with a 60% salary increase."</p>
+                    <div class="flex items-center">
+                        <span class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</span>
+                        <span class="ml-2 text-gray-600 font-semibold">5.0 Rating</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white text-2xl font-bold">LS</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800">Lisa Singh</h4>
+                            <p class="text-gray-600">CEH Certified</p>
+                            <p class="text-sm text-gray-500">Security Analyst at Microsoft (2025 updated)</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"The CEH certification opened doors I never thought possible. The hands-on labs and real-world scenarios prepared me perfectly. I'm now working as a Security Analyst at Microsoft! (2025 updated)</p>
+                    <div class="flex items-center">
+                        <span class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</span>
+                        <span class="ml-2 text-gray-600 font-semibold">5.0 Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accredited Partners -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Accredited Partners</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center opacity-60">
+                <div class="bg-gray-100 h-20 rounded-lg flex items-center justify-center">
+                    <span class="text-gray-400 font-bold">AWS</span>
+                </div>
+                <div class="bg-gray-100 h-20 rounded-lg flex items-center justify-center">
+                    <span class="text-gray-400 font-bold">Microsoft</span>
+                </div>
+                <div class="bg-gray-100 h-20 rounded-lg flex items-center justify-center">
+                    <span class="text-gray-400 font-bold">Google</span>
+                </div>
+                <div class="bg-gray-100 h-20 rounded-lg flex items-center justify-center">
+                    <span class="text-gray-400 font-bold">Cisco</span>
+                </div>
+                <div class="bg-gray-100 h-20 rounded-lg flex items-center justify-center">
+                    <span class="text-gray-400 font-bold">PMI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Certification Works -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">How Certification Works</h2>
+            <p class="text-center text-gray-600 mb-12">Your journey to certification in 4 simple steps</p>
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4">
+                    <div class="text-center process-step-item relative">
+                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+                            <span class="text-white text-3xl font-bold">1</span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Learn</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Access comprehensive course materials, video lectures, and hands-on labs</p>
+                    </div>
+                    <div class="text-center process-step-item relative">
+                        <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+                            <span class="text-white text-3xl font-bold">2</span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Practice</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Take mock exams and practice tests to prepare for the real certification exam</p>
+                    </div>
+                    <div class="text-center process-step-item relative">
+                        <div class="w-20 h-20 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+                            <span class="text-white text-3xl font-bold">3</span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Appear Exam</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Schedule and take the proctored certification exam at your convenience</p>
+                    </div>
+                    <div class="text-center process-step-item relative">
+                        <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+                            <span class="text-white text-3xl font-bold">4</span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Get Certified</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Receive your industry-recognized certificate and digital badge</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Instructors -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Popular Instructors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
+                    <div class="w-24 h-24 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-2xl font-bold">JS</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1 text-gray-800">John Smith</h3>
+                    <p class="text-gray-600 text-sm mb-2">AWS Solutions Architect</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700">4.9</span>
+                    </div>
+                    <span class="text-sm text-gray-500">12 Courses</span>
+                </div>
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center">
+                    <div class="w-24 h-24 bg-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-2xl font-bold">MJ</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1 text-gray-800">Johnson</h3>
+                    <p class="text-gray-600 text-sm mb-2">Cybersecurity Expert</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700">4.8</span>
+                    </div>
+                    <span class="text-sm text-gray-500">8 Courses</span>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 text-center">
+                    <div class="w-24 h-24 bg-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-2xl font-bold">DW</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1 text-gray-800">Williams</h3>
+                    <p class="text-gray-600 text-sm mb-2">Data Science Specialist</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700">4.9</span>
+                    </div>
+                    <span class="text-sm text-gray-500">15 Courses</span>
+                </div>
+                <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl p-6 text-center">
+                    <div class="w-24 h-24 bg-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-2xl font-bold">SB</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1 text-gray-800">Sarah Brown</h3>
+                    <p class="text-gray-600 text-sm mb-2">Full Stack Developer</p>
+                    <div class="flex items-center justify-center mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="ml-1 text-gray-700">4.7</span>
+                    </div>
+                    <span class="text-sm text-gray-500">10 Courses</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Start Your Certification Journey Today</h2>
+            <p class="text-xl mb-8 text-blue-100">Join thousands of professionals advancing their careers</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="register.html" class="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-50 transition font-bold text-lg">Get Started Free</a>
+                <a href="courses.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 transition font-bold text-lg">Browse Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl md:text-2xl font-bold text-white whitespace-nowrap">CertiLearn</span>
+                    </div>
+                    <p class="text-sm">Your trusted partner for professional certifications and career advancement.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="courses.html" class="hover:text-white transition">Courses</a></li>
+                        <li><a href="instructors.html" class="hover:text-white transition">Instructors</a></li>
+                        <li><a href="certification-exam.html" class="hover:text-white transition">Certifications</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+                        <li><a href="live-classes.html" class="hover:text-white transition">Live Classes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="404.html" class="hover:text-white transition">404 Page</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 CertiLearn Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        function toggleMobileDropdown() {
+            const dropdown = document.getElementById('mobile-home-dropdown');
+            const icon = document.getElementById('mobile-dropdown-icon');
+            if (dropdown && icon) {
+                dropdown.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+        // Mobile account dropdown toggle
+        function toggleAccountDropdown() {
+            const dropdown = document.getElementById('mobile-account-dropdown');
+            const icon = document.getElementById('mobile-account-dropdown-icon');
+            if (dropdown && icon) {
+                dropdown.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+
