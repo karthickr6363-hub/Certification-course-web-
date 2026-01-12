@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <title>Certification Exams - CertiLearn</title>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -64,12 +70,20 @@
                 <!-- Auth buttons (desktop) + mobile toggle -->
                 <div class="flex items-center space-x-4">
                     <div class="hidden xl:flex items-center space-x-4">
+                        <button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition" title="Toggle Theme" onclick="toggleTheme()" data-theme-toggle>
+                            <i class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
+                        </button>
                         <a href="login.html" class="border border-purple-600 text-purple-600 px-5 py-2 rounded-lg hover:bg-purple-50 transition font-medium">Login</a>
                         <a href="register.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold">Sign Up</a>
                     </div>
-                    <button class="xl:hidden text-gray-700 focus:outline-none hover:text-purple-600 transition mobilemenubar" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
+                    <div class="flex items-center space-x-2 xl:hidden">
+                        <button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition" title="Toggle Theme" onclick="toggleTheme()" data-theme-toggle>
+                            <i class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
+                        </button>
+                        <button class="text-gray-700 focus:outline-none hover:text-purple-600 transition mobilemenubar" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <!-- Mobile / tablet menu -->

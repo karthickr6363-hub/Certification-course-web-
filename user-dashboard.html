@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <title>User Dashboard - CertiLearn</title>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,6 +24,14 @@
         .nav-item:hover { background: rgba(255, 255, 255, 0.1); }
         .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 40; }
         .sidebar-overlay.active { display: block; }
+        /* Hide scrollbar for sidebar navigation */
+        .sidebar nav {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        .sidebar nav::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
         @media (max-width: 1023px) {
             .sidebar { position: fixed; left: 0; top: 0; bottom: 0; z-index: 50; transform: translateX(-100%); transition: transform 0.3s ease; }
             .sidebar.open { transform: translateX(0); }
@@ -35,28 +48,28 @@
             <div class="p-6 border-b border-gray-700 flex items-center justify-between">
                 <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition cursor-pointer">
                     <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center border border-white/30">
-                        <span class="text-white text-xl font-bold">C</span>
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
                     </div>
-                    <span class="text-xl font-bold">CertiLearn</span>
+                    <span class="text-2xl font-bold text-white">CertiLearn</span>
                 </a>
                 <button class="lg:hidden text-white hover:text-gray-300 transition" onclick="toggleSidebar()" title="Close">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
             <div class="p-4 border-b border-gray-700">
-                <p class="text-sm text-gray-400 mb-1">User Dashboard</p>
+                <p class="text-sm text-gray-300 mb-1">User Dashboard</p>
                 <p class="text-white font-medium">Welcome back, Student.</p>
             </div>
             <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
                 <div class="mb-4">
-                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-2 px-3">DASHBOARD</p>
+                    <p class="text-xs text-gray-300 uppercase tracking-wider mb-2 px-3 font-semibold">DASHBOARD</p>
                     <a href="#" class="nav-item active flex items-center space-x-3 px-3 py-2 rounded-lg">
                         <i class="fas fa-chart-line w-5"></i>
                         <span>Overview</span>
                     </a>
                 </div>
                 <div class="mb-4">
-                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-2 px-3">MY LEARNING</p>
+                    <p class="text-xs text-gray-300 uppercase tracking-wider mb-2 px-3 font-semibold">MY LEARNING</p>
                     <a href="#" class="nav-item flex items-center space-x-3 px-3 py-2 rounded-lg">
                         <i class="fas fa-book-open w-5"></i>
                         <span>My Courses</span>
@@ -71,7 +84,7 @@
                     </a>
                 </div>
                 <div class="mb-4">
-                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-2 px-3">PROGRESS</p>
+                    <p class="text-xs text-gray-300 uppercase tracking-wider mb-2 px-3 font-semibold">PROGRESS</p>
                     <a href="#" class="nav-item flex items-center space-x-3 px-3 py-2 rounded-lg">
                         <i class="fas fa-chart-bar w-5"></i>
                         <span>Learning Progress</span>
@@ -86,7 +99,7 @@
                     </a>
                 </div>
                 <div class="mb-4">
-                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-2 px-3">ACCOUNT</p>
+                    <p class="text-xs text-gray-300 uppercase tracking-wider mb-2 px-3 font-semibold">ACCOUNT</p>
                     <a href="#" class="nav-item flex items-center space-x-3 px-3 py-2 rounded-lg">
                         <i class="fas fa-user w-5"></i>
                         <span>Profile</span>
@@ -112,19 +125,19 @@
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Top Bar -->
-            <header class="bg-white shadow-sm px-4 md:px-6 py-4 flex items-center justify-between">
+            <header class="bg-white dark:bg-gray-800 shadow-sm px-4 md:px-6 py-4 flex items-center justify-between transition-colors">
                 <div class="flex items-center space-x-4">
                     <button class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition" onclick="toggleSidebar()" title="Menu">
                         <i class="fas fa-bars text-gray-600 text-xl"></i>
                     </button>
                     <div>
-                        <h1 class="text-xl md:text-2xl font-bold text-gray-800">Dashboard</h1>
+                        <h1 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">Dashboard</h1>
                         
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 md:space-x-4">
-                    <button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition" title="Dark Mode">
-                        <i class="fas fa-moon text-gray-600"></i>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition" title="Toggle Theme" onclick="toggleTheme()" data-theme-toggle>
+                        <i class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
                     </button>
                     <button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition" title="Refresh">
                         <i class="fas fa-sync-alt text-gray-600"></i>
@@ -139,18 +152,18 @@
             </header>
 
             <!-- Dashboard Content -->
-            <main class="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50">
+            <main class="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50 dark:bg-gray-900 transition-colors">
                 <!-- Key Metrics -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                    <div class="stat-card bg-white rounded-xl p-6 shadow-md">
+                    <div class="stat-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors">
                         <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-book text-blue-600 text-xl"></i>
+                            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-book text-blue-600 dark:text-blue-400 text-xl"></i>
                             </div>
                         </div>
-                        <h3 class="text-gray-600 text-sm font-medium mb-1">My Courses</h3>
-                        <p class="text-3xl font-bold text-gray-800 mb-2">12</p>
-                        <p class="text-sm text-green-600"><i class="fas fa-arrow-up"></i> 3 new this month</p>
+                        <h3 class="text-gray-600 dark:text-gray-300 text-sm font-medium mb-1">My Courses</h3>
+                        <p class="text-3xl font-bold text-gray-800 dark:text-white mb-2">12</p>
+                        <p class="text-sm text-green-600 dark:text-green-400"><i class="fas fa-arrow-up"></i> 3 new this month</p>
                     </div>
                     <div class="stat-card bg-white rounded-xl p-6 shadow-md">
                         <div class="flex items-center justify-between mb-4">
@@ -187,9 +200,9 @@
                 <!-- Charts Section -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                     <!-- Learning Progress -->
-                    <div class="bg-white rounded-xl p-4 md:p-6 shadow-md">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 shadow-md transition-colors">
                         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
-                            <h2 class="text-xl font-bold text-gray-800">Learning Progress</h2>
+                            <h2 class="text-xl font-bold text-gray-800 dark:text-white">Learning Progress</h2>
                             <div class="flex space-x-2">
                                 <button class="px-3 md:px-4 py-1 bg-purple-600 text-white rounded-lg text-sm font-medium">Monthly</button>
                                 <button class="px-3 md:px-4 py-1 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200">Yearly</button>
@@ -200,10 +213,10 @@
                         </div>
                     </div>
                     <!-- Course Categories -->
-                    <div class="bg-white rounded-xl p-4 md:p-6 shadow-md">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 shadow-md transition-colors">
                         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                            <h2 class="text-xl font-bold text-gray-800 mb-2 sm:mb-0">Course Categories</h2>
-                            <span class="text-sm text-gray-600">My Learning</span>
+                            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2 sm:mb-0">Course Categories</h2>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">My Learning</span>
                         </div>
                         <div class="flex flex-col md:flex-row items-center justify-center gap-6">
                             <div class="w-48 h-48 md:w-64 md:h-64 relative">
@@ -212,7 +225,7 @@
                             <div class="w-full md:w-auto space-y-3">
                                 <div class="flex items-center space-x-2">
                                     <div class="w-4 h-4 bg-purple-600 rounded-full flex-shrink-0"></div>
-                                    <span class="text-sm text-gray-700">IT & Cloud</span>
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">IT & Cloud</span>
                                 </div>
                                 <div class="flex items-center space-x-2">
                                     <div class="w-4 h-4 bg-green-500 rounded-full flex-shrink-0"></div>
@@ -238,38 +251,38 @@
                 <!-- Activity and Status Section -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <!-- My Courses -->
-                    <div class="lg:col-span-2 bg-white rounded-xl shadow-md overflow-hidden">
-                        <div class="px-6 py-4 border-b flex items-center justify-between">
-                            <h2 class="text-xl font-bold text-gray-800">My Courses</h2>
-                            <a href="#" class="text-sm text-purple-600 font-medium hover:underline">View All →</a>
+                    <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-colors">
+                        <div class="px-6 py-4 border-b dark:border-gray-700 flex items-center justify-between">
+                            <h2 class="text-xl font-bold text-gray-800 dark:text-white">My Courses</h2>
+                            <a href="#" class="text-sm text-purple-600 dark:text-purple-400 font-medium hover:underline">View All →</a>
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full">
-                                <thead class="bg-gray-50">
+                                <thead class="bg-gray-50 dark:bg-gray-700">
                                     <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Course</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Instructor</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Progress</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Accessed</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Course</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Instructor</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Progress</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Last Accessed</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Status</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-gray-200">
+                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                     <tr>
                                         <td class="px-6 py-4">
-                                            <p class="text-sm font-medium text-gray-800">AWS Solutions Architect</p>
-                                            <p class="text-xs text-gray-500">#CRS-2023-045</p>
+                                            <p class="text-sm font-medium text-gray-800 dark:text-white">AWS Solutions Architect</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">#CRS-2023-045</p>
                                         </td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">John Smith</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">John Smith</td>
                                         <td class="px-6 py-4">
                                             <div class="flex items-center space-x-2">
                                                 <div class="w-24 bg-gray-200 rounded-full h-2">
                                                     <div class="bg-green-500 h-2 rounded-full" style="width: 95%"></div>
                                                 </div>
-                                                <span class="text-xs text-gray-600">95%</span>
+                                                <span class="text-xs text-gray-600 dark:text-gray-300">95%</span>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Nov 15, 2023</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">Nov 15, 2023</td>
                                         <td class="px-6 py-4"><span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-semibold">In Progress</span></td>
                                     </tr>
                                     <tr>
@@ -348,17 +361,17 @@
                     <!-- Recent Activity & Upcoming -->
                     <div class="space-y-6">
                         <!-- Recent Activity -->
-                        <div class="bg-white rounded-xl shadow-md p-6">
-                            <h2 class="text-xl font-bold text-gray-800 mb-4">Recent Activity</h2>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 transition-colors">
+                            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Recent Activity</h2>
                             <div class="space-y-4">
                                 <div class="flex items-start space-x-3">
-                                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    <div class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-check text-green-600 dark:text-green-400 text-xs"></i>
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium text-gray-800">Course completed</p>
-                                        <p class="text-xs text-gray-600">Python Data Science</p>
-                                        <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
+                                        <p class="text-sm font-medium text-gray-800 dark:text-white">Course completed</p>
+                                        <p class="text-xs text-gray-600 dark:text-gray-300">Python Data Science</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">2 hours ago</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start space-x-3">
@@ -386,17 +399,17 @@
                         </div>
 
                         <!-- Upcoming Exams -->
-                        <div class="bg-white rounded-xl shadow-md p-6">
-                            <h2 class="text-xl font-bold text-gray-800 mb-4">Upcoming Exams</h2>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 transition-colors">
+                            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Upcoming Exams</h2>
                             <div class="space-y-4">
-                                <div class="border-l-4 border-purple-600 pl-4">
-                                    <p class="text-sm font-medium text-gray-800">AWS Solutions Architect</p>
-                                    <p class="text-xs text-gray-600 mb-2">Certification Exam</p>
-                                    <div class="flex items-center space-x-2 text-xs text-gray-500">
+                                <div class="border-l-4 border-purple-600 dark:border-purple-400 pl-4">
+                                    <p class="text-sm font-medium text-gray-800 dark:text-white">AWS Solutions Architect</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-300 mb-2">Certification Exam</p>
+                                    <div class="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
                                         <i class="fas fa-calendar"></i>
                                         <span>March 15, 2024</span>
                                     </div>
-                                    <div class="flex items-center space-x-2 text-xs text-gray-500 mt-1">
+                                    <div class="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400 mt-1">
                                         <i class="fas fa-clock"></i>
                                         <span>9:00 AM - 12:00 PM</span>
                                     </div>
@@ -418,13 +431,13 @@
                         </div>
 
                         <!-- Achievement Status -->
-                        <div class="bg-white rounded-xl shadow-md p-6">
-                            <h2 class="text-xl font-bold text-gray-800 mb-4">Achievement Status</h2>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 transition-colors">
+                            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Achievement Status</h2>
                             <div class="space-y-4">
                                 <div>
                                     <div class="flex items-center justify-between mb-2">
-                                        <span class="text-sm font-medium text-gray-700">Learning Streak</span>
-                                        <span class="text-sm font-bold text-gray-800">12 days</span>
+                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Learning Streak</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-white">12 days</span>
                                     </div>
                                     <div class="w-full bg-gray-200 rounded-full h-2">
                                         <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
