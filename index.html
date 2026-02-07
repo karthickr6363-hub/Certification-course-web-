@@ -60,8 +60,8 @@
         .dark .dropdown-menu a:hover { background: #374151; color: #818cf8; }
         .dropdown-menu a:first-child { border-top-left-radius: 12px; border-top-right-radius: 12px; }
         .dropdown-menu a:last-child { border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; display: -moz-box; -moz-line-clamp: 2; -moz-box-orient: vertical; display: box; line-clamp: 2; box-orient: vertical; }
+        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; display: -moz-box; -moz-line-clamp: 3; -moz-box-orient: vertical; display: box; line-clamp: 3; box-orient: vertical; }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 transition-colors">
@@ -183,15 +183,15 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-4xl mx-auto text-center text-white">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight hero-heading">Master Skills, Earn Certifications</h1>
-                <p class="text-lg md:text-2xl mb-8 hero-subheading">Join thousands of professionals advancing their careers with industry-recognized certifications</p>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight hero-heading">Start Your Learning Journey Today</h1>
+                <p class="text-lg md:text-2xl mb-8 hero-subheading">Discover world-class courses and build skills that matter. Join 100,000+ students achieving their career goals</p>
                 <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto shadow-2xl border border-white/20">
-                    <input type="text" placeholder="Search courses, certifications..." class="flex-1 px-5 py-3.5 text-gray-800 dark:text-gray-200 dark:bg-gray-800 dark:placeholder-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base">
-                    <button class="bg-purple-600 text-white px-8 py-3.5 rounded-xl hover:bg-purple-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Search</button>
+                    <input type="text" placeholder="What do you want to learn?" class="flex-1 px-5 py-3.5 text-gray-800 dark:text-gray-200 dark:bg-gray-800 dark:placeholder-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base">
+                    <button class="bg-purple-600 text-white px-8 py-3.5 rounded-xl hover:bg-purple-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Explore Courses</button>
                 </div>
                 <div class="flex flex-wrap justify-center gap-4 mt-10">
-                    <button class="bg-white text-purple-600 px-8 py-3.5 rounded-xl hover:bg-purple-50 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border border-white/20">Browse Courses</button>
-                    <button class="bg-transparent border-2 border-white/80 text-white px-8 py-3.5 rounded-xl hover:bg-white hover:text-purple-600 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 backdrop-blur-sm">View Certifications</button>
+                    <button class="bg-white text-purple-600 px-8 py-3.5 rounded-xl hover:bg-purple-50 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border border-white/20">Browse All Courses</button>
+                    <button class="bg-transparent border-2 border-white/80 text-white px-8 py-3.5 rounded-xl hover:bg-white hover:text-purple-600 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 backdrop-blur-sm">Free Learning Resources</button>
                 </div>
             </div>
         </div>
@@ -201,8 +201,8 @@
     <section class="py-20 bg-white dark:bg-gray-800 transition-colors">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">Popular Categories</h2>
-                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Explore our comprehensive range of certification courses designed to advance your career</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">Explore Popular Learning Paths</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Choose from our most sought-after categories and start building your expertise today</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="category-card rounded-2xl p-8 card-hover cursor-pointer text-center transition-all duration-300 dark:bg-gray-700 dark:border-gray-600">
@@ -210,32 +210,32 @@
                         <i class="fas fa-cloud text-blue-600 dark:text-blue-400 text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Cloud Computing</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-3 text-sm leading-relaxed">AWS, Azure, GCP certifications</p>
-                    <span class="text-sm text-purple-600 dark:text-purple-400 font-semibold mt-4 inline-block">24 Courses</span>
+                    <p class="text-gray-600 dark:text-gray-300 mb-3 text-sm leading-relaxed">Master AWS, Azure, and Google Cloud platforms</p>
+                    <span class="text-sm text-purple-600 dark:text-purple-400 font-semibold mt-4 inline-block">24 Courses • Beginner to Advanced</span>
                 </div>
                 <div class="category-card rounded-2xl p-8 card-hover cursor-pointer text-center transition-all duration-300">
                     <div class="w-20 h-20 bg-green-50 rounded-2xl flex items-center justify-center mb-6 mx-auto transition-transform duration-300 group-hover:scale-110">
                         <i class="fas fa-shield-alt text-green-600 text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-gray-900">Cybersecurity</h3>
-                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">Security+, CEH, CISSP</p>
-                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">18 Courses</span>
+                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">Protect digital assets and become a security expert</p>
+                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">18 Courses • Industry-Recognized</span>
                 </div>
                 <div class="category-card rounded-2xl p-8 card-hover cursor-pointer text-center transition-all duration-300">
                     <div class="w-20 h-20 bg-yellow-50 rounded-2xl flex items-center justify-center mb-6 mx-auto transition-transform duration-300 group-hover:scale-110">
                         <i class="fas fa-code text-yellow-600 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Programming</h3>
-                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">Python, Java, JavaScript</p>
-                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">32 Courses</span>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Web Development</h3>
+                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">Build modern web apps with cutting-edge technologies</p>
+                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">32 Courses • Hands-on Projects</span>
                 </div>
                 <div class="category-card rounded-2xl p-8 card-hover cursor-pointer text-center transition-all duration-300">
                     <div class="w-20 h-20 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 mx-auto transition-transform duration-300 group-hover:scale-110">
                         <i class="fas fa-chart-line text-purple-600 text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-gray-900">Data Science</h3>
-                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">ML, AI, Data Analytics</p>
-                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">15 Courses</span>
+                    <p class="text-gray-600 mb-3 text-sm leading-relaxed">Unlock insights with machine learning and analytics</p>
+                    <span class="text-sm text-purple-600 font-semibold mt-4 inline-block">15 Courses • Real-World Applications</span>
                 </div>
             </div>
         </div>
@@ -246,7 +246,9 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center justify-between mb-14 gap-4">
                 <div class="text-center md:text-left">
-                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">Top Courses</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">Featured Learning Experiences</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">Hand-picked courses designed to accelerate your growth</p>
+                </div>
                     <p class="text-lg text-gray-600 dark:text-gray-300">Handpicked courses from industry experts</p>
                 </div>
                 <a href="courses.html" class="text-purple-600 hover:text-purple-700 font-semibold text-base flex items-center gap-2 group">
@@ -278,12 +280,12 @@
                 </div>
                 <div class="course-card-modern bg-white dark:bg-gray-800 rounded-2xl overflow-hidden transition-all duration-300">
                     <div class="h-52 bg-gray-200 relative overflow-hidden">
-                        <img src="https://images.pexels.com/photos/5475752/pexels-photo-5475752.jpeg" alt="Certified Ethical Hacker" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <img src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg" alt="AWS Solutions Architect" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                         <span class="absolute top-4 right-4 bg-white text-purple-600 px-4 py-1.5 rounded-full text-xs font-bold shadow-md backdrop-blur-sm">Bestseller</span>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2.5 text-gray-900 leading-tight">Certified Ethical Hacker (CEH)</h3>
-                        <p class="text-gray-600 mb-5 text-sm leading-relaxed line-clamp-2">Learn ethical hacking and penetration testing by a certified ethical hacker</p>
+                        <h3 class="text-xl font-bold mb-2.5 text-gray-900 leading-tight">AWS Solutions Architect</h3>
+                        <p class="text-gray-600 mb-5 text-sm leading-relaxed line-clamp-2">Master cloud architecture and design scalable solutions on Amazon Web Services platform</p>
                         <div class="flex items-center justify-between mb-5">
                             <div class="flex items-center gap-1.5">
                                 <div class="flex items-center">

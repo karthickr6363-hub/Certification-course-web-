@@ -17,11 +17,11 @@
         * { font-family: 'Inter', sans-serif; }
         body { overflow-x: hidden; }
         .filter-card { background: #ffffff; border: 1px solid #e5e7eb; }
-        .course-grid-item { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .course-grid-item { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; height: 100%; }
         .course-grid-item:hover { transform: translateY(-6px); border-color: #667eea; box-shadow: 0 16px 32px rgba(102, 126, 234, 0.15), 0 4px 12px rgba(0,0,0,0.1); }
         .course-list-item { background: white; border-left: 4px solid #667eea; }
         .active-filter { background: #667eea; color: white; }
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; display: -moz-box; -moz-line-clamp: 2; -moz-box-orient: vertical; display: box; line-clamp: 2; box-orient: vertical; }
         #mobileFilterOverlay > div { animation: slideInRight 0.3s ease-out; }
         @keyframes slideInRight {
             from { transform: translateX(100%); }
@@ -366,7 +366,7 @@
                                 <img src="https://images.pexels.com/photos/6568691/pexels-photo-6568691.jpeg?auto=compress&cs=tinysrgb&w=800" alt="AWS Certified Solutions" class="w-full h-full object-cover">
                                 <span class="absolute top-3 right-3 bg-yellow-400 text-gray-800 px-2 py-1 rounded text-xs font-bold">Bestseller</span>
                             </div>
-                            <div class="p-5">
+                            <div class="p-5 flex-1 flex flex-col">
                                 <h3 class="text-lg font-bold mb-2 text-gray-800">AWS Certified Solutions IT (2025)</h3>
                                 <p class="text-gray-600 text-sm mb-3">Master cloud architecture and design scalable solutions by Amazon Web</p>
                                 <div class="flex items-center justify-between mb-3">
@@ -383,18 +383,20 @@
                                     <i class="far fa-user ml-4 mr-2"></i>
                                     <span>2,450 students</span>
                                 </div>
-                                <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                <div class="mt-auto">
+                                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Course Card 2 -->
                         <div class="course-grid-item">
                             <div class="h-40 relative overflow-hidden">
-                                <img src="https://images.pexels.com/photos/5475752/pexels-photo-5475752.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Certified Ethical Hacker" class="w-full h-full object-cover">
+                                <img src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=800" alt="AWS Solutions Architect" class="w-full h-full object-cover">
                             </div>
-                            <div class="p-5">
-                                <h3 class="text-lg font-bold mb-2 text-gray-800">Certified Ethical Hacker (CEH)</h3>
-                                <p class="text-gray-600 text-sm mb-3">Learn ethical hacking and penetration testing by a certified</p>
+                            <div class="p-5 flex-1 flex flex-col">
+                                <h3 class="text-lg font-bold mb-2 text-gray-800">AWS Solutions Architect</h3>
+                                <p class="text-gray-600 text-sm mb-3">Master cloud architecture and design scalable solutions on</p>
                                 <div class="flex items-center justify-between mb-3">
                                     <div class="flex items-center">
                                         <i class="fas fa-star text-yellow-400 text-sm"></i>
@@ -409,7 +411,9 @@
                                     <i class="far fa-user ml-4 mr-2"></i>
                                     <span>1,890 students</span>
                                 </div>
-                                <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                <div class="mt-auto">
+                                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                </div>
                             </div>
                         </div>
 
@@ -419,14 +423,14 @@
                                 <img src="https://images.pexels.com/photos/6424591/pexels-photo-6424591.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Python Data Science" class="w-full h-full object-cover">
                                 <span class="absolute top-3 right-3 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">New</span>
                             </div>
-                            <div class="p-5">
-                                <h3 class="text-lg font-bold mb-2 text-gray-800">Python Data Science Mastery</h3>
-                                <p class="text-gray-600 text-sm mb-3">Complete guide to data science with Python by a certified</p>
+                            <div class="p-5 flex-1 flex flex-col">
+                                <h3 class="text-lg font-bold mb-2 text-gray-800">Python Data Science</h3>
+                                <p class="text-gray-600 text-sm mb-3">Learn data analysis and visualization with Python libraries like</p>
                                 <div class="flex items-center justify-between mb-3">
                                     <div class="flex items-center">
                                         <i class="fas fa-star text-yellow-400 text-sm"></i>
                                         <span class="ml-1 text-sm text-gray-700 font-semibold">4.9</span>
-                                        <span class="text-gray-500 text-sm ml-1">(3,120)</span>
+                                        <span class="text-gray-500 text-sm ml-1">(3,200)</span>
                                     </div>
                                     <span class="text-purple-600 font-bold">$79</span>
                                 </div>
@@ -434,9 +438,11 @@
                                     <i class="far fa-clock mr-2"></i>
                                     <span>20 hours</span>
                                     <i class="far fa-user ml-4 mr-2"></i>
-                                    <span>3,120 students</span>
+                                    <span>3,200 students</span>
                                 </div>
-                                <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                <div class="mt-auto">
+                                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                </div>
                             </div>
                         </div>
 
@@ -445,7 +451,7 @@
                             <div class="h-40 relative overflow-hidden">
                                 <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Microsoft Azure Administrator" class="w-full h-full object-cover">
                             </div>
-                            <div class="p-5">
+                            <div class="p-5 flex-1 flex flex-col">
                                 <h3 class="text-lg font-bold mb-2 text-gray-800">Microsoft Administrator</h3>
                                 <p class="text-gray-600 text-sm mb-3">Become an expert in Azure cloud infrastructure by Microsoft instructor</p>
                                 <div class="flex items-center justify-between mb-3">
@@ -462,7 +468,9 @@
                                     <i class="far fa-user ml-4 mr-2"></i>
                                     <span>1,890 students</span>
                                 </div>
-                                <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                <div class="mt-auto">
+                                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                </div>
                             </div>
                         </div>
 
@@ -471,7 +479,7 @@
                             <div class="h-40 relative overflow-hidden">
                                 <img src="https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Full Stack Web Development" class="w-full h-full object-cover">
                             </div>
-                            <div class="p-5">
+                            <div class="p-5 flex-1 flex flex-col">
                                 <h3 class="text-lg font-bold mb-2 text-gray-800">Full Stack Web Development</h3>
                                 <p class="text-gray-600 text-sm mb-3">Build modern web applications from scratch with HTML, CSS, and Js</p>
                                 <div class="flex items-center justify-between mb-3">
@@ -488,7 +496,9 @@
                                     <i class="far fa-user ml-4 mr-2"></i>
                                     <span>2,100 students</span>
                                 </div>
-                                <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                <div class="mt-auto">
+                                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                </div>
                             </div>
                         </div>
 
@@ -497,7 +507,7 @@
                             <div class="h-40 relative overflow-hidden">
                                 <img src="https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kubernetes Administration" class="w-full h-full object-cover">
                             </div>
-                            <div class="p-5">
+                            <div class="p-5 flex-1 flex flex-col">
                                 <h3 class="text-lg font-bold mb-2 text-gray-800">Kubernetes Administration</h3>
                                 <p class="text-gray-600 text-sm mb-3">Master container orchestration with Kubernetes by a certified</p>
                                 <div class="flex items-center justify-between mb-3">
@@ -514,7 +524,9 @@
                                     <i class="far fa-user ml-4 mr-2"></i>
                                     <span>1,450 students</span>
                                 </div>
-                                <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                <div class="mt-auto">
+                                    <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm font-semibold">Enroll Now</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -553,13 +565,13 @@
                         <div class="course-list-item rounded-lg p-6 shadow-md">
                             <div class="flex flex-col md:flex-row gap-6">
                                 <div class="w-full md:w-64 h-40 rounded-lg flex-shrink-0 overflow-hidden">
-                                    <img src="https://images.pexels.com/photos/5475752/pexels-photo-5475752.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Certified Ethical Hacker" class="w-full h-full object-cover">
+                                    <img src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=800" alt="AWS Solutions Architect" class="w-full h-full object-cover">
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <div class="flex items-start justify-between mb-2 gap-4">
                                         <div class="flex-1 min-w-0">
-                                            <h3 class="text-xl font-bold mb-2 text-gray-800 truncate">Certified Ethical Hacker (CEH)</h3>
-                                            <p class="text-gray-600 mb-3 line-clamp-2">Learn ethical hacking and penetration testing</p>
+                                            <h3 class="text-xl font-bold mb-2 text-gray-800 truncate">AWS Solutions Architect</h3>
+                                            <p class="text-gray-600 mb-3 line-clamp-2">Master cloud architecture and design scalable solutions</p>
                                         </div>
                                         <span class="text-purple-600 font-bold text-2xl flex-shrink-0">$99</span>
                                     </div>
